@@ -1,39 +1,39 @@
 {
   "Files": [
     {
-      "Id": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/Uploads/Movie/Rectangle 55.png/Rectangle 55.png",
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/Rectangle 55.png/Rectangle 55.png",
       "PackagePath": "staticwebassets/Uploads/Movie/Rectangle 55.png/Rectangle 55.png"
     },
     {
-      "Id": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/Uploads/Movie/avenger.png/avenger.png",
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/avenger.png/avenger.png",
       "PackagePath": "staticwebassets/Uploads/Movie/avenger.png/avenger.png"
     },
     {
-      "Id": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/Uploads/Movie/it.png/it.png",
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/it.png/it.png",
       "PackagePath": "staticwebassets/Uploads/Movie/it.png/it.png"
     },
     {
-      "Id": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/Uploads/Movie/noname.png/noname.png",
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/noname.png/noname.png",
       "PackagePath": "staticwebassets/Uploads/Movie/noname.png/noname.png"
     },
     {
-      "Id": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/Uploads/Movie/shark.png/shark.png",
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/shark.png/shark.png",
       "PackagePath": "staticwebassets/Uploads/Movie/shark.png/shark.png"
     },
     {
-      "Id": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/Uploads/Movie/videotest.mp4/videotest.mp4",
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/videotest.mp4/videotest.mp4",
       "PackagePath": "staticwebassets/Uploads/Movie/videotest.mp4/videotest.mp4"
     },
     {
-      "Id": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/common/hinhtest.png",
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/common/hinhtest.png",
       "PackagePath": "staticwebassets/common/hinhtest.png"
     },
     {
-      "Id": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/common/logo.jpeg",
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/common/logo.jpeg",
       "PackagePath": "staticwebassets/common/logo.jpeg"
     },
     {
-      "Id": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/common/noimage.png",
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/common/noimage.png",
       "PackagePath": "staticwebassets/common/noimage.png"
     },
     {

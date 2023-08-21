@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Library/WebServer/Documents/webserverCinema/MyCinema/MyCinema.csproj": {}
+    "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/MyCinema.csproj": {}
   },
   "projects": {
-    "/Library/WebServer/Documents/webserverCinema/MyCinema/MyCinema.csproj": {
+    "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/MyCinema.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Library/WebServer/Documents/webserverCinema/MyCinema/MyCinema.csproj",
+        "projectUniqueName": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/MyCinema.csproj",
         "projectName": "MyCinema",
-        "projectPath": "/Library/WebServer/Documents/webserverCinema/MyCinema/MyCinema.csproj",
+        "projectPath": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/MyCinema.csproj",
         "packagesPath": "/Users/dungtien/.nuget/packages/",
-        "outputPath": "/Library/WebServer/Documents/webserverCinema/MyCinema/obj/",
+        "outputPath": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/dungtien/.nuget/NuGet/NuGet.Config"

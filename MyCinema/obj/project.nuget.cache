@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "b2/f8U9ts4BExjM6O5EO5H3Clx4kIF73pjJEgPYdtTBHNkQCv7bCdY+1qjPiquWE5DHsthJud2MfH6+PgAPDRw==",
+  "dgSpecHash": "r9gXO71KuD2qOlZZ4NzphW94Y8DQpYkTAlejKQh4iO7a/z1AsWESvGW21CyJ4jnU4ZMXFEuSrBjCnKgIN+dFGA==",
   "success": true,
-  "projectFilePath": "/Library/WebServer/Documents/webserverCinema/MyCinema/MyCinema.csproj",
+  "projectFilePath": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/MyCinema.csproj",
   "expectedPackageFiles": [
     "/Users/dungtien/.nuget/packages/google.protobuf/3.21.9/google.protobuf.3.21.9.nupkg.sha512",
     "/Users/dungtien/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",

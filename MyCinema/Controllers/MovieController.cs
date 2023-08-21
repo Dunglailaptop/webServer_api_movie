@@ -1,3 +1,4 @@
+using System.Security.Cryptography.X509Certificates;
 using System.Runtime.InteropServices;
 using System.IO.MemoryMappedFiles;
 using System.Net.Cache;
@@ -10,6 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using System;
+using System.Linq;
+
 
 namespace webapiserver.Controllers;
 
@@ -147,7 +150,8 @@ public IActionResult getDetailMovies(long Idmovie)
                 moviedetail.Poster = result.Poster;
                 moviedetail.Timeall = result.Timeall;
                 moviedetail.Yearbirthday = result.Yearbirthday;
-              
+                var getvideofile = _context.Videousers.Where(x => x.Idvideo == result.Idvideo).FirstOrDefault();
+                moviedetail.Videofile = getvideofile.Videofile;
         
                 successApiResponse.Status = 200;
                 successApiResponse.Message = "OK";

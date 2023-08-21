@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "pMIS+C80I/CShCRDxmkU57tyy1o02UygoR4LaQ6Ktq4=",
+  "Hash": "0WGlAkFBSnZpnz76K7MBkCs7l8liI9IhNC+6LGjcs9M=",
   "Source": "MyCinema",
   "BasePath": "_content/MyCinema",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "MyCinema/wwwroot",
       "Source": "MyCinema",
-      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/",
+      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/",
       "BasePath": "_content/MyCinema",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/common/hinhtest.png",
+      "Identity": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/common/hinhtest.png",
       "SourceId": "MyCinema",
       "SourceType": "Discovered",
-      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/",
+      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/",
       "BasePath": "_content/MyCinema",
       "RelativePath": "common/hinhtest.png",
       "AssetKind": "All",
@@ -34,10 +34,10 @@
       "OriginalItemSpec": "wwwroot/common/hinhtest.png"
     },
     {
-      "Identity": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/common/logo.jpeg",
+      "Identity": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/common/logo.jpeg",
       "SourceId": "MyCinema",
       "SourceType": "Discovered",
-      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/",
+      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/",
       "BasePath": "_content/MyCinema",
       "RelativePath": "common/logo.jpeg",
       "AssetKind": "All",
@@ -51,10 +51,10 @@
       "OriginalItemSpec": "wwwroot/common/logo.jpeg"
     },
     {
-      "Identity": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/common/noimage.png",
+      "Identity": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/common/noimage.png",
       "SourceId": "MyCinema",
       "SourceType": "Discovered",
-      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/",
+      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/",
       "BasePath": "_content/MyCinema",
       "RelativePath": "common/noimage.png",
       "AssetKind": "All",
@@ -68,10 +68,10 @@
       "OriginalItemSpec": "wwwroot/common/noimage.png"
     },
     {
-      "Identity": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/Uploads/Movie/avenger.png/avenger.png",
+      "Identity": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/avenger.png/avenger.png",
       "SourceId": "MyCinema",
       "SourceType": "Discovered",
-      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/",
+      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/",
       "BasePath": "_content/MyCinema",
       "RelativePath": "Uploads/Movie/avenger.png/avenger.png",
       "AssetKind": "All",
@@ -85,10 +85,10 @@
       "OriginalItemSpec": "wwwroot/Uploads/Movie/avenger.png/avenger.png"
     },
     {
-      "Identity": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/Uploads/Movie/it.png/it.png",
+      "Identity": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/it.png/it.png",
       "SourceId": "MyCinema",
       "SourceType": "Discovered",
-      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/",
+      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/",
       "BasePath": "_content/MyCinema",
       "RelativePath": "Uploads/Movie/it.png/it.png",
       "AssetKind": "All",
@@ -102,10 +102,10 @@
       "OriginalItemSpec": "wwwroot/Uploads/Movie/it.png/it.png"
     },
     {
-      "Identity": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/Uploads/Movie/noname.png/noname.png",
+      "Identity": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/noname.png/noname.png",
       "SourceId": "MyCinema",
       "SourceType": "Discovered",
-      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/",
+      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/",
       "BasePath": "_content/MyCinema",
       "RelativePath": "Uploads/Movie/noname.png/noname.png",
       "AssetKind": "All",
@@ -119,10 +119,10 @@
       "OriginalItemSpec": "wwwroot/Uploads/Movie/noname.png/noname.png"
     },
     {
-      "Identity": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/Uploads/Movie/Rectangle 55.png/Rectangle 55.png",
+      "Identity": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/Rectangle 55.png/Rectangle 55.png",
       "SourceId": "MyCinema",
       "SourceType": "Discovered",
-      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/",
+      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/",
       "BasePath": "_content/MyCinema",
       "RelativePath": "Uploads/Movie/Rectangle 55.png/Rectangle 55.png",
       "AssetKind": "All",
@@ -136,10 +136,10 @@
       "OriginalItemSpec": "wwwroot/Uploads/Movie/Rectangle 55.png/Rectangle 55.png"
     },
     {
-      "Identity": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/Uploads/Movie/shark.png/shark.png",
+      "Identity": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/shark.png/shark.png",
       "SourceId": "MyCinema",
       "SourceType": "Discovered",
-      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/",
+      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/",
       "BasePath": "_content/MyCinema",
       "RelativePath": "Uploads/Movie/shark.png/shark.png",
       "AssetKind": "All",
@@ -153,10 +153,10 @@
       "OriginalItemSpec": "wwwroot/Uploads/Movie/shark.png/shark.png"
     },
     {
-      "Identity": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/Uploads/Movie/videotest.mp4/videotest.mp4",
+      "Identity": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/videotest.mp4/videotest.mp4",
       "SourceId": "MyCinema",
       "SourceType": "Discovered",
-      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/MyCinema/wwwroot/",
+      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/",
       "BasePath": "_content/MyCinema",
       "RelativePath": "Uploads/Movie/videotest.mp4/videotest.mp4",
       "AssetKind": "All",
