@@ -1,16 +1,32 @@
 {
   "Files": [
     {
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/Logo-test.png/Logo-test.png",
+      "PackagePath": "staticwebassets/Uploads/Movie/Logo-test.png/Logo-test.png"
+    },
+    {
       "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/Rectangle 55.png/Rectangle 55.png",
       "PackagePath": "staticwebassets/Uploads/Movie/Rectangle 55.png/Rectangle 55.png"
+    },
+    {
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/avatar-admin.jpg/avatar-admin.jpg",
+      "PackagePath": "staticwebassets/Uploads/Movie/avatar-admin.jpg/avatar-admin.jpg"
     },
     {
       "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/avenger.png/avenger.png",
       "PackagePath": "staticwebassets/Uploads/Movie/avenger.png/avenger.png"
     },
     {
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/harrypotter.jpeg/harrypotter.jpeg",
+      "PackagePath": "staticwebassets/Uploads/Movie/harrypotter.jpeg/harrypotter.jpeg"
+    },
+    {
       "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/it.png/it.png",
       "PackagePath": "staticwebassets/Uploads/Movie/it.png/it.png"
+    },
+    {
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/johnwick.jpeg/johnwick.jpeg",
+      "PackagePath": "staticwebassets/Uploads/Movie/johnwick.jpeg/johnwick.jpeg"
     },
     {
       "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/noname.png/noname.png",
@@ -19,6 +35,14 @@
     {
       "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/shark.png/shark.png",
       "PackagePath": "staticwebassets/Uploads/Movie/shark.png/shark.png"
+    },
+    {
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/siperman.jpeg/siperman.jpeg",
+      "PackagePath": "staticwebassets/Uploads/Movie/siperman.jpeg/siperman.jpeg"
+    },
+    {
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/thor.jpeg/thor.jpeg",
+      "PackagePath": "staticwebassets/Uploads/Movie/thor.jpeg/thor.jpeg"
     },
     {
       "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/videotest.mp4/videotest.mp4",

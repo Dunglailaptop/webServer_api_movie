@@ -87,12 +87,15 @@ public class PhimController : ControllerBase
 
 //     return Ok(successApiResponse);
 // }
+// up load image test
+
 
 // upload file Image
 [HttpPost("UploadImage")]
 public async Task<ActionResult> UploadImage()
 {
     bool Results = false;
+      var uploadedFileNames = new List<string>();
     try
     {
         var _uploadedfiles = Request.Form.Files;
@@ -115,6 +118,7 @@ public async Task<ActionResult> UploadImage()
             using (FileStream stream = System.IO.File.Create(imagepath))
             {
                 await source.CopyToAsync(stream);
+                uploadedFileNames.Add(Filename + "/" + Filename);
                 Results = true;
             }
         }
@@ -124,7 +128,7 @@ public async Task<ActionResult> UploadImage()
         // Handle or log the exception
          Console.WriteLine($"Exception: {ex.Message}");
     }
-    return Ok(Results);
+    return Ok(uploadedFileNames);
 }
 
   [NonAction]
@@ -137,12 +141,12 @@ public async Task<ActionResult> UploadImage()
     private string GetImagebyProduct(string productcode)
     {
         string ImageUrl = string.Empty;
-        string HostUrl = "https://localhost:7118/";
+        string HostUrl = "http://localhost:5062";
         string Filepath = GetFilePath(productcode);
         string Imagepath = Filepath;
         if (!System.IO.File.Exists(Imagepath))
         {
-            ImageUrl = HostUrl + "/Uploads/common/noimage.png";
+            ImageUrl = Imagepath;
         }
         else
         {
@@ -154,7 +158,7 @@ public async Task<ActionResult> UploadImage()
     //get file image
     [HttpGet("getImage")]
     public string getImage(){
-        return GetImagebyProduct("age.png");
+        return GetImagebyProduct("videotest.mp4/videotest.mp4");
     }
 
 }

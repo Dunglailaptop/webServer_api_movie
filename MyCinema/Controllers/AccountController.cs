@@ -18,23 +18,12 @@ namespace webapiserver.Controllers;
 public class AccountController : ControllerBase
 {
         private readonly CinemaContext _context;
-        
-
         public AccountController(CinemaContext context)
         {
             _context = context;
             
         }
-
-        // // GET: api/Products
-        // [HttpGet]
-        // // [Authorize]
-        // public  IEnumerable<Account> GetAccount()
-        // {
-        //     return  _context.Accounts.ToList();
-        // }
-
-
+// API DANG NHAP VAO TAI KHOAN **
 [HttpGet("Logins")]
 public IActionResult getdata(string username, string password)
 {
@@ -102,74 +91,6 @@ public IActionResult getdata(string username, string password)
     }
 }
 
-
-// [HttpGet("Logins")]
-// public IActionResult getdata(string username, string password){
-
-//        if (username == null && password == null)
-//         {
-//         return BadRequest("Account data is invalid.");
-//         }
-
-//     string sql = "CALL  cinema.login(@p0, @p1)";
-//   var valuelogin =  _context.Database.ExecuteSqlRaw(sql, username, password);
-//     _context.SaveChanges();
-
-//       //  var account = _context.Accounts.FirstOrDefault(x => x.Username == username && x.Password == password);
-//       //   var accountDto = new AccountDto();
-//            var successApiResponse = new ApiResponse();
-
-//          // Retrieve a specific request header
-//        string token = Request.Headers["token"];
-//        string filterHeaderValue2 = Request.Headers["ProjectId"];
-//        string filterHeaderValue3 = Request.Headers["Method"];
-//        string expectedToken = ValidHeader.Token;
-//        string method =Convert.ToString(ValidHeader.MethodGet);
-//        string Pojectid = Convert.ToString(ValidHeader.Project_id);
-   
-
-//    if (valuelogin == null)
-//     {
-//         var apiResponse = new ApiResponse
-//         {
-//             Status = 404,
-//             Message = "Account not found.",
-//             Data = null
-//         };
-
-//         return NotFound(apiResponse);
-//     }else {
-    
-//         if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(filterHeaderValue2) || string.IsNullOrEmpty(filterHeaderValue3))
-//         {
-//         // The "Authorize" header was not found in the request
-         
-//            return BadRequest("Authorize header not found in the request.");
-//         }else {
-
-//             if (token != expectedToken || filterHeaderValue2 != Pojectid || filterHeaderValue3 != method)
-//           {
-//             return Unauthorized("Invalid token."); // Return an error response if the tokens don't match
-//           }else{
-              
-//                      successApiResponse.Status = 200;
-//                      successApiResponse.Message = "OK";
-//                      successApiResponse.Data = valuelogin;
-//                       Console.WriteLine(valuelogin.ToString());
-
-//            }
-
-//         }
-
-  
-     
-//     // var hashedPassword = HashPassword("123");
-//     }
-
-
-//     return Ok(successApiResponse);
-// }
-
 [HttpGet("getrole")]
 public IActionResult getdatarole(){
     var account = _context.Roles.ToList();
@@ -178,73 +99,6 @@ public IActionResult getdatarole(){
     succapi.Data = account;
     return Ok(succapi);
 }
-
-       
-[HttpGet("login")]
-public IActionResult Login(string username, string password)
-{
-     var account = _context.Accounts.FirstOrDefault(x => x.Username == username && x.Password == password);
-        var accountDto = new AccountDto();
-           var successApiResponse = new ApiResponse();
-
-         // Retrieve a specific request header
-       string token = Request.Headers["token"];
-       string filterHeaderValue2 = Request.Headers["ProjectId"];
-       string filterHeaderValue3 = Request.Headers["Method"];
-       string expectedToken = ValidHeader.Token;
-       string method =Convert.ToString(ValidHeader.MethodGet);
-       string Pojectid = Convert.ToString(ValidHeader.Project_id);
-   
-
-   if (account == null)
-    {
-        var apiResponse = new ApiResponse
-        {
-            Status = 404,
-            Message = "Account not found.",
-            Data = null
-        };
-
-        return NotFound(apiResponse);
-    }else {
-    
-        if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(filterHeaderValue2) || string.IsNullOrEmpty(filterHeaderValue3))
-        {
-        // The "Authorize" header was not found in the request
-         
-           return BadRequest("Authorize header not found in the request.");
-        }else {
-
-            if (token != expectedToken || filterHeaderValue2 != Pojectid || filterHeaderValue3 != method)
-          {
-            return Unauthorized("Invalid token."); // Return an error response if the tokens don't match
-          }else{
-              
-             
-                 
-                    accountDto.EmployeeId = account.Idusers;
-                    accountDto.Username = account.Username;
-               
-               var employeeInfo = _context.Users.SingleOrDefault(x=>x.Idusers == accountDto.EmployeeId);
-
-                    successApiResponse.Status = 200;
-                     successApiResponse.Message = "OK";
-                      successApiResponse.Data = employeeInfo;
-                     
-
-           }
-
-        }
-
-  
-     
-    // var hashedPassword = HashPassword("123");
-    }
-
-
-    return Ok(successApiResponse);
-}
-
 
 [HttpPost("CREATEACCOUNT")]
 public IActionResult CreateAccount(Account account){
@@ -268,20 +122,47 @@ public IActionResult CreateAccount(Account account){
    
   return Ok("tao thanh cong");
 }
-
-  [HttpPost]
-public IActionResult InsertAccount([FromBody] Account account)
+// API CAP NHAT THONG TIN TAI KHOAN *
+[HttpPost("UpdateAccount")]
+public IActionResult UpdateAccount([FromBody] UserDto account)
 {
-    if (account == null)
-    {
-        return BadRequest("Account data is invalid.");
-    }
+    // khoi tao api response
+    var successApiResponse = new ApiResponse();
+    //header
+       string token = Request.Headers["token"];
+       string filterHeaderValue2 = Request.Headers["ProjectId"];
+       string filterHeaderValue3 = Request.Headers["Method"];
+       string expectedToken = ValidHeader.Token;
+       string method =Convert.ToString(ValidHeader.MethodPost);
+       string Pojectid = Convert.ToString(ValidHeader.Project_id);
+    //check header
+        if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(filterHeaderValue2) || string.IsNullOrEmpty(filterHeaderValue3))
+        {
+        // The "Authorize" header was not found in the request
+           return BadRequest("Authorize header not found in the request.");
+        }else {
 
-    string sql = "CALL  Cinema.InsertAccount(@p0, @p1, @p2)";
-    _context.Database.ExecuteSqlRaw(sql, account.Username, account.Password, account.Idusers);
-    _context.SaveChanges();
+            if (token != expectedToken || filterHeaderValue2 != Pojectid || filterHeaderValue3 != method)
+          {
+            return Unauthorized("Invalid token."); // Return an error response if the tokens don't match
+          }else{
+            if (account.Fullname != null && account.Email != null && account.Idusers != null && account.Phone != null){
+                   string sql = "CALL cinema.updateAccount(@p0,@p1,@p2,@p3,@p4,@p5)";
+                   _context.Database.ExecuteSqlRaw(sql, account.Idusers,account.Fullname,account.Email,account.Phone,account.Birthday,account.Avatar);
+                   _context.SaveChanges();
+                    successApiResponse.Status = 200;
+                     successApiResponse.Message = "OK";
+                     successApiResponse.Data = "cậpp nhậtt tàii khoảnn thànhh công";
+                      
+            }else {
+                return BadRequest("Vui long nhap day du thong tin tai khoan");
+            }
+                 
 
-    return Ok("Account inserted successfully.");
+           }
+
+        }
+ return Ok(successApiResponse);
 }
 
 
