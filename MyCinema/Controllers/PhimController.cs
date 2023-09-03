@@ -127,8 +127,9 @@ public async Task<ActionResult> UploadImage()
     {
         // Handle or log the exception
          Console.WriteLine($"Exception: {ex.Message}");
+          return BadRequest(); 
     }
-    return Ok(uploadedFileNames);
+    return Ok(Results);
 }
 
   [NonAction]

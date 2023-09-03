@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/9004738_lock_security_padlock_secure_icon.png/9004738_lock_security_padlock_secure_icon.png",
+      "PackagePath": "staticwebassets/Uploads/Movie/9004738_lock_security_padlock_secure_icon.png/9004738_lock_security_padlock_secure_icon.png"
+    },
+    {
       "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/Logo-test.png/Logo-test.png",
       "PackagePath": "staticwebassets/Uploads/Movie/Logo-test.png/Logo-test.png"
     },

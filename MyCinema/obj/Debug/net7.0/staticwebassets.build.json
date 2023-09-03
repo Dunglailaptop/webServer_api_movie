@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "r5qCOgt19agPNyerKWvJm2h+5wBaeTMRfywgiPE33NU=",
+  "Hash": "0Sy8xdQk1BNUlhp/Bwisn56TOk0tfZhcdWZXpl2movQ=",
   "Source": "MyCinema",
   "BasePath": "_content/MyCinema",
   "Mode": "Default",
@@ -66,6 +66,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/common/noimage.png"
+    },
+    {
+      "Identity": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/9004738_lock_security_padlock_secure_icon.png/9004738_lock_security_padlock_secure_icon.png",
+      "SourceId": "MyCinema",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/",
+      "BasePath": "_content/MyCinema",
+      "RelativePath": "Uploads/Movie/9004738_lock_security_padlock_secure_icon.png/9004738_lock_security_padlock_secure_icon.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Uploads/Movie/9004738_lock_security_padlock_secure_icon.png/9004738_lock_security_padlock_secure_icon.png"
     },
     {
       "Identity": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/avatar-admin.jpg/avatar-admin.jpg",
