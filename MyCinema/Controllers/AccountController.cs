@@ -164,6 +164,58 @@ public IActionResult UpdateAccount([FromBody] UserDto account)
         }
  return Ok(successApiResponse);
 }
+// API GET INFO ACCOUNT
+[HttpGet("getInfoAccount")]
+public IActionResult UpdateAccount(long id)
+{
+    // khoi tao api response
+    var successApiResponse = new ApiResponse();
+    //header
+       string token = Request.Headers["token"];
+       string filterHeaderValue2 = Request.Headers["ProjectId"];
+       string filterHeaderValue3 = Request.Headers["Method"];
+       string expectedToken = ValidHeader.Token;
+       string method =Convert.ToString(ValidHeader.MethodGet);
+       string Pojectid = Convert.ToString(ValidHeader.Project_id);
+    //check header
+        if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(filterHeaderValue2) || string.IsNullOrEmpty(filterHeaderValue3))
+        {
+        // The "Authorize" header was not found in the request
+           return BadRequest("Authorize header not found in the request.");
+        }else {
+
+            if (token != expectedToken || filterHeaderValue2 != Pojectid || filterHeaderValue3 != method)
+          {
+            return Unauthorized("Invalid token."); // Return an error response if the tokens don't match
+          }else{
+            if (id != null){
+                   string sql = "CALL cinema.getInfoAccount(@p0)";
+                   var dataget = _context.Users.FromSqlRaw(sql, id).AsEnumerable().FirstOrDefault();
+                   UserDto us = new UserDto();
+                   us.Idusers = dataget.Idusers;
+                   us.Email = dataget.Email;
+                   us.Birthday = dataget.Birthday.ToString();
+                   us.Fullname = dataget.Fullname;
+                   us.Phone = dataget.Phone;
+                   us.Idrole = dataget.Idrole;
+                   var role = _context.Roles.SingleOrDefault(x => x.Idrole == dataget.Idrole);
+                   us.Avatar = dataget.Avatar;
+                   us.idrolename = role.IdName;
+                    successApiResponse.Status = 200;
+                     successApiResponse.Message = "OK";
+                     successApiResponse.Data = us;
+                      
+            }else {
+                return BadRequest("khong tim thay thong tin tai khoan");
+            }
+                 
+
+           }
+
+        }
+ return Ok(successApiResponse);
+}
+
 
 
 public class AccountDto
@@ -182,6 +234,8 @@ public class UserDto
     public string Birthday { get; set; }
     public int? Idrole { get; set; }
     public string Avatar { get; set; }
+
+    public string idrolename {get;set;}
 }
 
 

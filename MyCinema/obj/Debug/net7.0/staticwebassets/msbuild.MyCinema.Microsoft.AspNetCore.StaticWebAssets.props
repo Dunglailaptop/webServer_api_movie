@@ -48,6 +48,182 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\common\noimage.png))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\0DD4DF82-1D3E-4FD3-987F-23FEFF6B30FA.jpeg\0DD4DF82-1D3E-4FD3-987F-23FEFF6B30FA.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MyCinema</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MyCinema</BasePath>
+      <RelativePath>Uploads/Movie/0DD4DF82-1D3E-4FD3-987F-23FEFF6B30FA.jpeg/0DD4DF82-1D3E-4FD3-987F-23FEFF6B30FA.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\0DD4DF82-1D3E-4FD3-987F-23FEFF6B30FA.jpeg\0DD4DF82-1D3E-4FD3-987F-23FEFF6B30FA.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\1033915F-FF46-4055-8971-C5E6B43D515A.jpeg\1033915F-FF46-4055-8971-C5E6B43D515A.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MyCinema</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MyCinema</BasePath>
+      <RelativePath>Uploads/Movie/1033915F-FF46-4055-8971-C5E6B43D515A.jpeg/1033915F-FF46-4055-8971-C5E6B43D515A.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\1033915F-FF46-4055-8971-C5E6B43D515A.jpeg\1033915F-FF46-4055-8971-C5E6B43D515A.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\24F0DF47-14C4-4ACA-9104-954C6B20639F.jpeg\24F0DF47-14C4-4ACA-9104-954C6B20639F.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MyCinema</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MyCinema</BasePath>
+      <RelativePath>Uploads/Movie/24F0DF47-14C4-4ACA-9104-954C6B20639F.jpeg/24F0DF47-14C4-4ACA-9104-954C6B20639F.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\24F0DF47-14C4-4ACA-9104-954C6B20639F.jpeg\24F0DF47-14C4-4ACA-9104-954C6B20639F.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\3CD1832C-C19E-4D0A-BFE4-B105C3F8340C.jpeg\3CD1832C-C19E-4D0A-BFE4-B105C3F8340C.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MyCinema</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MyCinema</BasePath>
+      <RelativePath>Uploads/Movie/3CD1832C-C19E-4D0A-BFE4-B105C3F8340C.jpeg/3CD1832C-C19E-4D0A-BFE4-B105C3F8340C.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\3CD1832C-C19E-4D0A-BFE4-B105C3F8340C.jpeg\3CD1832C-C19E-4D0A-BFE4-B105C3F8340C.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\453DD1BC-DACB-4172-82D1-23D7FB1C8286.jpeg\453DD1BC-DACB-4172-82D1-23D7FB1C8286.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MyCinema</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MyCinema</BasePath>
+      <RelativePath>Uploads/Movie/453DD1BC-DACB-4172-82D1-23D7FB1C8286.jpeg/453DD1BC-DACB-4172-82D1-23D7FB1C8286.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\453DD1BC-DACB-4172-82D1-23D7FB1C8286.jpeg\453DD1BC-DACB-4172-82D1-23D7FB1C8286.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\48ED7D36-17A9-4D0D-A080-5E7C7A55031C.jpeg\48ED7D36-17A9-4D0D-A080-5E7C7A55031C.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MyCinema</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MyCinema</BasePath>
+      <RelativePath>Uploads/Movie/48ED7D36-17A9-4D0D-A080-5E7C7A55031C.jpeg/48ED7D36-17A9-4D0D-A080-5E7C7A55031C.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\48ED7D36-17A9-4D0D-A080-5E7C7A55031C.jpeg\48ED7D36-17A9-4D0D-A080-5E7C7A55031C.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\64A3FC4C-2BEE-4E64-8364-DC429B557B9A.jpeg\64A3FC4C-2BEE-4E64-8364-DC429B557B9A.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MyCinema</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MyCinema</BasePath>
+      <RelativePath>Uploads/Movie/64A3FC4C-2BEE-4E64-8364-DC429B557B9A.jpeg/64A3FC4C-2BEE-4E64-8364-DC429B557B9A.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\64A3FC4C-2BEE-4E64-8364-DC429B557B9A.jpeg\64A3FC4C-2BEE-4E64-8364-DC429B557B9A.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\66818_lock_locked_secure_icon.ico\66818_lock_locked_secure_icon.ico))">
+      <SourceType>Package</SourceType>
+      <SourceId>MyCinema</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MyCinema</BasePath>
+      <RelativePath>Uploads/Movie/66818_lock_locked_secure_icon.ico/66818_lock_locked_secure_icon.ico</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\66818_lock_locked_secure_icon.ico\66818_lock_locked_secure_icon.ico))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\6C4F4715-AEC8-4BC8-99A6-022213C1B4DA.jpeg\6C4F4715-AEC8-4BC8-99A6-022213C1B4DA.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MyCinema</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MyCinema</BasePath>
+      <RelativePath>Uploads/Movie/6C4F4715-AEC8-4BC8-99A6-022213C1B4DA.jpeg/6C4F4715-AEC8-4BC8-99A6-022213C1B4DA.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\6C4F4715-AEC8-4BC8-99A6-022213C1B4DA.jpeg\6C4F4715-AEC8-4BC8-99A6-022213C1B4DA.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\6E10D323-57AD-4190-A65E-D6F398996D4C.jpeg\6E10D323-57AD-4190-A65E-D6F398996D4C.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MyCinema</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MyCinema</BasePath>
+      <RelativePath>Uploads/Movie/6E10D323-57AD-4190-A65E-D6F398996D4C.jpeg/6E10D323-57AD-4190-A65E-D6F398996D4C.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\6E10D323-57AD-4190-A65E-D6F398996D4C.jpeg\6E10D323-57AD-4190-A65E-D6F398996D4C.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\80184121-C990-4901-A9E8-29EBC39009C1.jpeg\80184121-C990-4901-A9E8-29EBC39009C1.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MyCinema</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MyCinema</BasePath>
+      <RelativePath>Uploads/Movie/80184121-C990-4901-A9E8-29EBC39009C1.jpeg/80184121-C990-4901-A9E8-29EBC39009C1.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\80184121-C990-4901-A9E8-29EBC39009C1.jpeg\80184121-C990-4901-A9E8-29EBC39009C1.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\9004738_lock_security_padlock_secure_icon.png\9004738_lock_security_padlock_secure_icon.png))">
       <SourceType>Package</SourceType>
       <SourceId>MyCinema</SourceId>
@@ -63,6 +239,38 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\9004738_lock_security_padlock_secure_icon.png\9004738_lock_security_padlock_secure_icon.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\9A30F276-D247-49F5-B78F-29509D5A4E1C.jpeg\9A30F276-D247-49F5-B78F-29509D5A4E1C.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MyCinema</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MyCinema</BasePath>
+      <RelativePath>Uploads/Movie/9A30F276-D247-49F5-B78F-29509D5A4E1C.jpeg/9A30F276-D247-49F5-B78F-29509D5A4E1C.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\9A30F276-D247-49F5-B78F-29509D5A4E1C.jpeg\9A30F276-D247-49F5-B78F-29509D5A4E1C.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\A2792312-8B2D-43C8-AF40-470137CA5E85.jpeg\A2792312-8B2D-43C8-AF40-470137CA5E85.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MyCinema</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MyCinema</BasePath>
+      <RelativePath>Uploads/Movie/A2792312-8B2D-43C8-AF40-470137CA5E85.jpeg/A2792312-8B2D-43C8-AF40-470137CA5E85.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\A2792312-8B2D-43C8-AF40-470137CA5E85.jpeg\A2792312-8B2D-43C8-AF40-470137CA5E85.jpeg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\avatar-admin.jpg\avatar-admin.jpg))">
       <SourceType>Package</SourceType>
@@ -96,6 +304,70 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\avenger.png\avenger.png))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\B6D37705-4CD5-443C-84CA-A6FB829951B2.jpeg\B6D37705-4CD5-443C-84CA-A6FB829951B2.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MyCinema</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MyCinema</BasePath>
+      <RelativePath>Uploads/Movie/B6D37705-4CD5-443C-84CA-A6FB829951B2.jpeg/B6D37705-4CD5-443C-84CA-A6FB829951B2.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\B6D37705-4CD5-443C-84CA-A6FB829951B2.jpeg\B6D37705-4CD5-443C-84CA-A6FB829951B2.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\CA55AE36-C71D-4763-838C-3DFF7C73834F.jpeg\CA55AE36-C71D-4763-838C-3DFF7C73834F.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MyCinema</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MyCinema</BasePath>
+      <RelativePath>Uploads/Movie/CA55AE36-C71D-4763-838C-3DFF7C73834F.jpeg/CA55AE36-C71D-4763-838C-3DFF7C73834F.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\CA55AE36-C71D-4763-838C-3DFF7C73834F.jpeg\CA55AE36-C71D-4763-838C-3DFF7C73834F.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\EA3696D2-48CC-4367-92C7-762FFF026B59.jpeg\EA3696D2-48CC-4367-92C7-762FFF026B59.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MyCinema</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MyCinema</BasePath>
+      <RelativePath>Uploads/Movie/EA3696D2-48CC-4367-92C7-762FFF026B59.jpeg/EA3696D2-48CC-4367-92C7-762FFF026B59.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\EA3696D2-48CC-4367-92C7-762FFF026B59.jpeg\EA3696D2-48CC-4367-92C7-762FFF026B59.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\ECD704F1-82A3-42BC-84B2-67F21E26F438.jpeg\ECD704F1-82A3-42BC-84B2-67F21E26F438.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MyCinema</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MyCinema</BasePath>
+      <RelativePath>Uploads/Movie/ECD704F1-82A3-42BC-84B2-67F21E26F438.jpeg/ECD704F1-82A3-42BC-84B2-67F21E26F438.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\ECD704F1-82A3-42BC-84B2-67F21E26F438.jpeg\ECD704F1-82A3-42BC-84B2-67F21E26F438.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\harrypotter.jpeg\harrypotter.jpeg))">
       <SourceType>Package</SourceType>
       <SourceId>MyCinema</SourceId>
@@ -111,6 +383,22 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\harrypotter.jpeg\harrypotter.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\imagenew.jpeg\imagenew.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MyCinema</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MyCinema</BasePath>
+      <RelativePath>Uploads/Movie/imagenew.jpeg/imagenew.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\imagenew.jpeg\imagenew.jpeg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Uploads\Movie\it.png\it.png))">
       <SourceType>Package</SourceType>

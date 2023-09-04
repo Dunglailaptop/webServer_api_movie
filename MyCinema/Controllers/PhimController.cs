@@ -96,6 +96,7 @@ public async Task<ActionResult> UploadImage()
 {
     bool Results = false;
       var uploadedFileNames = new List<string>();
+      var apiresponse = new ApiResponse();
     try
     {
         var _uploadedfiles = Request.Form.Files;
@@ -119,6 +120,10 @@ public async Task<ActionResult> UploadImage()
             {
                 await source.CopyToAsync(stream);
                 uploadedFileNames.Add(Filename + "/" + Filename);
+                apiresponse.Status = 200;
+                apiresponse.Message = Filename + "/" + Filename;
+                apiresponse.Data = uploadedFileNames;
+               
                 Results = true;
             }
         }
@@ -129,7 +134,7 @@ public async Task<ActionResult> UploadImage()
          Console.WriteLine($"Exception: {ex.Message}");
           return BadRequest(); 
     }
-    return Ok(Results);
+    return Ok(apiresponse);
 }
 
   [NonAction]
