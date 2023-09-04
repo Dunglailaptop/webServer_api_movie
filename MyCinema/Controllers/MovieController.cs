@@ -36,10 +36,10 @@ public class MovieController : ControllerBase
 
 
 [HttpGet("ListMovie")]
-public IActionResult getListMovies(int offset_value, int page_size)
+public IActionResult getListMovies(int offset_value, int page_size,int Status)
 {
-    string sql = "CALL cinema.getListMovieNowShow(@p0, @p1)";
-    var result = _context.Movies.FromSqlRaw(sql, offset_value, page_size).ToList();
+    string sql = "CALL cinema.getListMovieNowShow(@p0, @p1, @p2)";
+    var result = _context.Movies.FromSqlRaw(sql, offset_value, page_size, Status).ToList();
     var successApiResponse = new ApiResponse();
 
     // Retrieve specific request headers

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "xVyYuP/Xty6HDVVWPQlzPnoXvNVZ5MkJbl1np//s/BM=",
+  "Hash": "BRfoIG0As+jbcxA8ZNGW5ngcNG98Er5drI7NNBXEyns=",
   "Source": "MyCinema",
   "BasePath": "_content/MyCinema",
   "Mode": "Default",
@@ -372,6 +372,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Uploads/Movie/CA55AE36-C71D-4763-838C-3DFF7C73834F.jpeg/CA55AE36-C71D-4763-838C-3DFF7C73834F.jpeg"
+    },
+    {
+      "Identity": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/CGV-Aeon-Tanbinh.png/CGV-Aeon-Tanbinh.png",
+      "SourceId": "MyCinema",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/",
+      "BasePath": "_content/MyCinema",
+      "RelativePath": "Uploads/Movie/CGV-Aeon-Tanbinh.png/CGV-Aeon-Tanbinh.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Uploads/Movie/CGV-Aeon-Tanbinh.png/CGV-Aeon-Tanbinh.png"
+    },
+    {
+      "Identity": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/CGV-Pandora-city.jpeg/CGV-Pandora-city.jpeg",
+      "SourceId": "MyCinema",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/",
+      "BasePath": "_content/MyCinema",
+      "RelativePath": "Uploads/Movie/CGV-Pandora-city.jpeg/CGV-Pandora-city.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Uploads/Movie/CGV-Pandora-city.jpeg/CGV-Pandora-city.jpeg"
     },
     {
       "Identity": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/EA3696D2-48CC-4367-92C7-762FFF026B59.jpeg/EA3696D2-48CC-4367-92C7-762FFF026B59.jpeg",

@@ -19,5 +19,7 @@ public partial class Videouser
 
     public string? Imageview { get; set; }
 
+    public int? types {get; set;}
+
     public virtual User? IduserNavigation { get; set; }
 }

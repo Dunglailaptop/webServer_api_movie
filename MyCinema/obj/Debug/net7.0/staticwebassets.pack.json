@@ -65,6 +65,14 @@
       "PackagePath": "staticwebassets/Uploads/Movie/CA55AE36-C71D-4763-838C-3DFF7C73834F.jpeg/CA55AE36-C71D-4763-838C-3DFF7C73834F.jpeg"
     },
     {
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/CGV-Aeon-Tanbinh.png/CGV-Aeon-Tanbinh.png",
+      "PackagePath": "staticwebassets/Uploads/Movie/CGV-Aeon-Tanbinh.png/CGV-Aeon-Tanbinh.png"
+    },
+    {
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/CGV-Pandora-city.jpeg/CGV-Pandora-city.jpeg",
+      "PackagePath": "staticwebassets/Uploads/Movie/CGV-Pandora-city.jpeg/CGV-Pandora-city.jpeg"
+    },
+    {
       "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/EA3696D2-48CC-4367-92C7-762FFF026B59.jpeg/EA3696D2-48CC-4367-92C7-762FFF026B59.jpeg",
       "PackagePath": "staticwebassets/Uploads/Movie/EA3696D2-48CC-4367-92C7-762FFF026B59.jpeg/EA3696D2-48CC-4367-92C7-762FFF026B59.jpeg"
     },
