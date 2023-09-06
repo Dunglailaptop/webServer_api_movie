@@ -157,6 +157,10 @@ public partial class CinemaContext : DbContext
 
             entity.HasIndex(e => e.Idroom, "kp_chair_room");
 
+            entity.Property(e => e.RowChar)
+                .HasMaxLength(1)
+                .IsFixedLength();
+
             entity.HasOne(d => d.IdcategorychairNavigation).WithMany(p => p.Chairs)
                 .HasForeignKey(d => d.Idcategorychair)
                 .HasConstraintName("kp_chair_categorychair");
@@ -360,8 +364,14 @@ public partial class CinemaContext : DbContext
 
             entity.ToTable("Room");
 
+            entity.HasIndex(e => e.Idcinema, "fk_idcinema_cinemas");
+
             entity.Property(e => e.Nameroom).HasMaxLength(20);
             entity.Property(e => e.Statusroom).HasColumnName("statusroom");
+
+            entity.HasOne(d => d.IdcinemaNavigation).WithMany(p => p.Rooms)
+                .HasForeignKey(d => d.Idcinema)
+                .HasConstraintName("fk_idcinema_cinemas");
         });
 
         modelBuilder.Entity<Ticket>(entity =>
@@ -441,6 +451,7 @@ public partial class CinemaContext : DbContext
             entity.Property(e => e.Describes).HasMaxLength(255);
             entity.Property(e => e.Imageview).HasMaxLength(255);
             entity.Property(e => e.Titlevideo).HasMaxLength(255);
+            entity.Property(e => e.Types).HasColumnName("types");
             entity.Property(e => e.Videofile).HasMaxLength(255);
 
             entity.HasOne(d => d.IduserNavigation).WithMany(p => p.Videousers)

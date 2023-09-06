@@ -17,6 +17,8 @@ public partial class Chair
 
     public int? Idcategorychair { get; set; }
 
+    public string? RowChar { get; set; }
+
     public virtual Categorychair? IdcategorychairNavigation { get; set; }
 
     public virtual Room? IdroomNavigation { get; set; }

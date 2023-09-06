@@ -17,5 +17,7 @@ public partial class Cinema
 
     public string? Describes { get; set; }
 
+    public virtual ICollection<Room> Rooms { get; set; } = new List<Room>();
+
     public virtual ICollection<Userofcinema> Userofcinemas { get; set; } = new List<Userofcinema>();
 }

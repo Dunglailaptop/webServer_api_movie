@@ -27,8 +27,6 @@ public partial class Movie
 
     public int? Statusshow { get; set; }
 
-
-
     public virtual ICollection<Cinemainterest> Cinemainterests { get; set; } = new List<Cinemainterest>();
 
     public virtual CategoryMovie? IdcategorymovieNavigation { get; set; }
