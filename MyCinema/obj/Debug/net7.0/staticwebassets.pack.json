@@ -85,8 +85,52 @@
       "PackagePath": "staticwebassets/Uploads/Movie/Logo-test.png/Logo-test.png"
     },
     {
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/POSTER-DUN2.jpeg/POSTER-DUN2.jpeg",
+      "PackagePath": "staticwebassets/Uploads/Movie/POSTER-DUN2.jpeg/POSTER-DUN2.jpeg"
+    },
+    {
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/POSTER-FIVE.jpeg/POSTER-FIVE.jpeg",
+      "PackagePath": "staticwebassets/Uploads/Movie/POSTER-FIVE.jpeg/POSTER-FIVE.jpeg"
+    },
+    {
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/POSTER-MYPARADE.jpeg/POSTER-MYPARADE.jpeg",
+      "PackagePath": "staticwebassets/Uploads/Movie/POSTER-MYPARADE.jpeg/POSTER-MYPARADE.jpeg"
+    },
+    {
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/POSTER-RETRIBUTION.jpeg/POSTER-RETRIBUTION.jpeg",
+      "PackagePath": "staticwebassets/Uploads/Movie/POSTER-RETRIBUTION.jpeg/POSTER-RETRIBUTION.jpeg"
+    },
+    {
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/POSTER-THENUN.jpeg/POSTER-THENUN.jpeg",
+      "PackagePath": "staticwebassets/Uploads/Movie/POSTER-THENUN.jpeg/POSTER-THENUN.jpeg"
+    },
+    {
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/POSTER-THIENACDOIDAU.jpeg/POSTER-THIENACDOIDAU.jpeg",
+      "PackagePath": "staticwebassets/Uploads/Movie/POSTER-THIENACDOIDAU.jpeg/POSTER-THIENACDOIDAU.jpeg"
+    },
+    {
       "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/Rectangle 55.png/Rectangle 55.png",
       "PackagePath": "staticwebassets/Uploads/Movie/Rectangle 55.png/Rectangle 55.png"
+    },
+    {
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/VOUCHER-BUYTICKET.jpeg/VOUCHER-BUYTICKET.jpeg",
+      "PackagePath": "staticwebassets/Uploads/Movie/VOUCHER-BUYTICKET.jpeg/VOUCHER-BUYTICKET.jpeg"
+    },
+    {
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/VOUCHER-MOMO.png/VOUCHER-MOMO.png",
+      "PackagePath": "staticwebassets/Uploads/Movie/VOUCHER-MOMO.png/VOUCHER-MOMO.png"
+    },
+    {
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/VOUCHER-THENUN.jpeg/VOUCHER-THENUN.jpeg",
+      "PackagePath": "staticwebassets/Uploads/Movie/VOUCHER-THENUN.jpeg/VOUCHER-THENUN.jpeg"
+    },
+    {
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/VOUCHER-THU4.png/VOUCHER-THU4.png",
+      "PackagePath": "staticwebassets/Uploads/Movie/VOUCHER-THU4.png/VOUCHER-THU4.png"
+    },
+    {
+      "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/VOUCHER-TUANLEREFILL.jpeg/VOUCHER-TUANLEREFILL.jpeg",
+      "PackagePath": "staticwebassets/Uploads/Movie/VOUCHER-TUANLEREFILL.jpeg/VOUCHER-TUANLEREFILL.jpeg"
     },
     {
       "Id": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/avatar-admin.jpg/avatar-admin.jpg",

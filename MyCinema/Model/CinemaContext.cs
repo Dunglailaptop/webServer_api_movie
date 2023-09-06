@@ -14,7 +14,9 @@ public partial class CinemaContext : DbContext
         : base(options)
     {
     }
-
+     
+    public DbSet<INTERESTCINEMA> INTERESTCINEMA { get; set; }
+    public DbSet<LISTCINEMA> LISTCINEMA {get;set;}
     public virtual DbSet<Account> Accounts { get; set; }
 
     public virtual DbSet<Bill> Bills { get; set; }
@@ -469,9 +471,16 @@ public partial class CinemaContext : DbContext
             entity.Property(e => e.Note).HasMaxLength(255);
             entity.Property(e => e.Poster).HasMaxLength(255);
         });
-
+          modelBuilder.Entity<INTERESTCINEMA>()
+        .HasNoKey(); // Assuming 'Id' is the primary key property name.
+         modelBuilder.Entity<LISTCINEMA>()
+        .HasNoKey();
         OnModelCreatingPartial(modelBuilder);
     }
+    //   protected override void OnModelCreating(ModelBuilder modelBuilder)
+    //    {
+          
+    //   }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
