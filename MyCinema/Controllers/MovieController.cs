@@ -144,6 +144,7 @@ public IActionResult getDetailMovies(long Idmovie)
             else
             {
                 var moviedetail = new MovieItem();
+                moviedetail.MovieID = result.Idmovie;
                 moviedetail.Namemovie = result.Namemovie;
                 moviedetail.Author = result.Author;
                 moviedetail.Describes = result.Describes;

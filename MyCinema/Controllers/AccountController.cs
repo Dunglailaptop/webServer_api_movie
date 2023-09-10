@@ -235,7 +235,7 @@ public class UserDto
     public int? Idrole { get; set; }
     public string Avatar { get; set; }
 
-    public string idrolename {get;set;}
+    public string? idrolename {get;set;}
 }
 
 

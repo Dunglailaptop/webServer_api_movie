@@ -22,3 +22,15 @@ public partial class LISTCINEMA
     
     
 }
+
+public partial class CHAIR
+{
+    public int Idchair { get; set; }
+    
+    public int NumberChair { get; set; }
+
+     public string RowChar { get; set; }
+
+     public long? bill {get;set;} 
+    
+}

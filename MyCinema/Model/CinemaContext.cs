@@ -14,7 +14,7 @@ public partial class CinemaContext : DbContext
         : base(options)
     {
     }
-     
+     public DbSet<CHAIR> CHAIRS { get; set; }
     public DbSet<INTERESTCINEMA> INTERESTCINEMA { get; set; }
     public DbSet<LISTCINEMA> LISTCINEMA {get;set;}
     public virtual DbSet<Account> Accounts { get; set; }
@@ -474,6 +474,9 @@ public partial class CinemaContext : DbContext
           modelBuilder.Entity<INTERESTCINEMA>()
         .HasNoKey(); // Assuming 'Id' is the primary key property name.
          modelBuilder.Entity<LISTCINEMA>()
+        .HasNoKey();
+        OnModelCreatingPartial(modelBuilder);
+               modelBuilder.Entity<CHAIR>()
         .HasNoKey();
         OnModelCreatingPartial(modelBuilder);
     }
