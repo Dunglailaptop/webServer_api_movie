@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NTJOePgcRm76hK5Z4ROv9Twq2pWmya62z2aJ97/P+iE=",
+  "Hash": "Yi0OtmMQ1gpfLqrPMV91pyswLtje9AGV/faIY2Rf/tM=",
   "Source": "MyCinema",
   "BasePath": "_content/MyCinema",
   "Mode": "Default",
@@ -66,6 +66,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/common/noimage.png"
+    },
+    {
+      "Identity": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/01D48D5D-83E3-47A5-8CE1-278EBC652327.jpeg/01D48D5D-83E3-47A5-8CE1-278EBC652327.jpeg",
+      "SourceId": "MyCinema",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/",
+      "BasePath": "_content/MyCinema",
+      "RelativePath": "Uploads/Movie/01D48D5D-83E3-47A5-8CE1-278EBC652327.jpeg/01D48D5D-83E3-47A5-8CE1-278EBC652327.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Uploads/Movie/01D48D5D-83E3-47A5-8CE1-278EBC652327.jpeg/01D48D5D-83E3-47A5-8CE1-278EBC652327.jpeg"
     },
     {
       "Identity": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/04F1D827-D8AB-4ABD-A28C-FB4A8B91389C.jpeg/04F1D827-D8AB-4ABD-A28C-FB4A8B91389C.jpeg",
@@ -134,6 +151,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Uploads/Movie/24F0DF47-14C4-4ACA-9104-954C6B20639F.jpeg/24F0DF47-14C4-4ACA-9104-954C6B20639F.jpeg"
+    },
+    {
+      "Identity": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/2CBCE8C0-429D-4217-AB55-5627E2832CD0.jpeg/2CBCE8C0-429D-4217-AB55-5627E2832CD0.jpeg",
+      "SourceId": "MyCinema",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/",
+      "BasePath": "_content/MyCinema",
+      "RelativePath": "Uploads/Movie/2CBCE8C0-429D-4217-AB55-5627E2832CD0.jpeg/2CBCE8C0-429D-4217-AB55-5627E2832CD0.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Uploads/Movie/2CBCE8C0-429D-4217-AB55-5627E2832CD0.jpeg/2CBCE8C0-429D-4217-AB55-5627E2832CD0.jpeg"
     },
     {
       "Identity": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/3CD1832C-C19E-4D0A-BFE4-B105C3F8340C.jpeg/3CD1832C-C19E-4D0A-BFE4-B105C3F8340C.jpeg",
@@ -423,6 +457,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Uploads/Movie/B6D37705-4CD5-443C-84CA-A6FB829951B2.jpeg/B6D37705-4CD5-443C-84CA-A6FB829951B2.jpeg"
+    },
+    {
+      "Identity": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/C340AFD4-1F89-4942-9FF4-120C142A3207.jpeg/C340AFD4-1F89-4942-9FF4-120C142A3207.jpeg",
+      "SourceId": "MyCinema",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/",
+      "BasePath": "_content/MyCinema",
+      "RelativePath": "Uploads/Movie/C340AFD4-1F89-4942-9FF4-120C142A3207.jpeg/C340AFD4-1F89-4942-9FF4-120C142A3207.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Uploads/Movie/C340AFD4-1F89-4942-9FF4-120C142A3207.jpeg/C340AFD4-1F89-4942-9FF4-120C142A3207.jpeg"
     },
     {
       "Identity": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/CA55AE36-C71D-4763-838C-3DFF7C73834F.jpeg/CA55AE36-C71D-4763-838C-3DFF7C73834F.jpeg",

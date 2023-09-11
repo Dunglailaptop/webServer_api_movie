@@ -34,3 +34,22 @@ public partial class CHAIR
      public long? bill {get;set;} 
     
 }
+
+public partial class USERS
+{
+    public string Fullname { get; set; }
+    
+    public string Email { get; set; }
+
+     public string phone { get; set; }
+
+     public DateTime Birthday {get;set;} 
+
+     public string avatar {get;set;} 
+       public int gender {get;set;} 
+      public int Idrole {get;set;} 
+       public int Idusers {get;set;} 
+        public int Idcinema {get;set;} 
+         public int statuss {get;set;} 
+    
+}

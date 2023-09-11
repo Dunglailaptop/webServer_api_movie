@@ -14,9 +14,12 @@ public partial class CinemaContext : DbContext
         : base(options)
     {
     }
+    //INNNER JOIN START
+      public DbSet<USERS> USERS { get; set; }
      public DbSet<CHAIR> CHAIRS { get; set; }
     public DbSet<INTERESTCINEMA> INTERESTCINEMA { get; set; }
     public DbSet<LISTCINEMA> LISTCINEMA {get;set;}
+    //INNERHOIN END
     public virtual DbSet<Account> Accounts { get; set; }
 
     public virtual DbSet<Bill> Bills { get; set; }
@@ -471,6 +474,7 @@ public partial class CinemaContext : DbContext
             entity.Property(e => e.Note).HasMaxLength(255);
             entity.Property(e => e.Poster).HasMaxLength(255);
         });
+        //INNER JOIN START
           modelBuilder.Entity<INTERESTCINEMA>()
         .HasNoKey(); // Assuming 'Id' is the primary key property name.
          modelBuilder.Entity<LISTCINEMA>()
@@ -479,6 +483,10 @@ public partial class CinemaContext : DbContext
                modelBuilder.Entity<CHAIR>()
         .HasNoKey();
         OnModelCreatingPartial(modelBuilder);
+          modelBuilder.Entity<USERS>()
+        .HasNoKey();
+        OnModelCreatingPartial(modelBuilder);
+        //INNER JOIN END
     }
     //   protected override void OnModelCreating(ModelBuilder modelBuilder)
     //    {
