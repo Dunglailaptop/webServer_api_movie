@@ -147,8 +147,8 @@ public IActionResult UpdateAccount([FromBody] UserDto account)
             return Unauthorized("Invalid token."); // Return an error response if the tokens don't match
           }else{
             if (account.Fullname != null && account.Email != null && account.Idusers != null && account.Phone != null){
-                   string sql = "CALL cinema.updateAccount(@p0,@p1,@p2,@p3,@p4,@p5)";
-                   _context.Database.ExecuteSqlRaw(sql, account.Idusers,account.Fullname,account.Email,account.Phone,account.Birthday,account.Avatar);
+                   string sql = "CALL cinema.updateAccount(@p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7)";
+                   _context.Database.ExecuteSqlRaw(sql, account.Idusers,account.Fullname,account.Email,account.Phone,account.Birthday,account.Avatar,account.gender,account.address);
                    _context.SaveChanges();
                     successApiResponse.Status = 200;
                      successApiResponse.Message = "OK";
@@ -198,6 +198,8 @@ public IActionResult UpdateAccount(long id)
                    us.Fullname = dataget.Fullname;
                    us.Phone = dataget.Phone;
                    us.Idrole = dataget.Idrole;
+                   us.gender = dataget.gender;
+                   us.address = dataget.address;
                    var role = _context.Roles.SingleOrDefault(x => x.Idrole == dataget.Idrole);
                    us.Avatar = dataget.Avatar;
                    us.idrolename = role.IdName;
@@ -234,7 +236,8 @@ public class UserDto
     public string Birthday { get; set; }
     public int? Idrole { get; set; }
     public string Avatar { get; set; }
-
+    public int? gender {get;set;}
+    public string? address {get;set;}
     public string? idrolename {get;set;}
 }
 
