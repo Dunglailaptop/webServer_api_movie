@@ -95,7 +95,8 @@ public IActionResult getdata(string username, string password)
 public IActionResult getdatarole(){
     var account = _context.Roles.ToList();
     var succapi = new ApiResponse();
-    succapi.Message = "200";
+    succapi.Status = 200;
+    succapi.Message = "OK";
     succapi.Data = account;
     return Ok(succapi);
 }
@@ -147,8 +148,8 @@ public IActionResult UpdateAccount([FromBody] UserDto account)
             return Unauthorized("Invalid token."); // Return an error response if the tokens don't match
           }else{
             if (account.Fullname != null && account.Email != null && account.Idusers != null && account.Phone != null){
-                   string sql = "CALL cinema.updateAccount(@p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7)";
-                   _context.Database.ExecuteSqlRaw(sql, account.Idusers,account.Fullname,account.Email,account.Phone,account.Birthday,account.Avatar,account.gender,account.address);
+                   string sql = "CALL cinema.updateAccount(@p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8)";
+                   _context.Database.ExecuteSqlRaw(sql, account.Idusers,account.Fullname,account.Email,account.Phone,account.Birthday,account.Avatar,account.gender,account.address,account.Idrole);
                    _context.SaveChanges();
                     successApiResponse.Status = 200;
                      successApiResponse.Message = "OK";

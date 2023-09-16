@@ -15,6 +15,7 @@ public partial class CinemaContext : DbContext
     {
     }
     //INNNER JOIN START
+    public DbSet<CINEMA> CINEMAS { get; set; }
       public DbSet<USERS> USERS { get; set; }
      public DbSet<CHAIR> CHAIRS { get; set; }
     public DbSet<INTERESTCINEMA> INTERESTCINEMA { get; set; }
@@ -484,6 +485,10 @@ public partial class CinemaContext : DbContext
         .HasNoKey();
         OnModelCreatingPartial(modelBuilder);
           modelBuilder.Entity<USERS>()
+        .HasNoKey();
+        OnModelCreatingPartial(modelBuilder);
+         OnModelCreatingPartial(modelBuilder);
+          modelBuilder.Entity<CINEMA>()
         .HasNoKey();
         OnModelCreatingPartial(modelBuilder);
         //INNER JOIN END

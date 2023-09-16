@@ -26,7 +26,7 @@ public class EmployeeController : ControllerBase
 
 // API GET LIST EMPLOYEE
 [HttpGet("getlistemployee")]
-public IActionResult getListemployee(int iduser,string keysearch,int idcinema)
+public IActionResult getListemployee(int iduser,string? keysearch,int idcinema)
 {
     // khoi tao api response
     var successApiResponse = new ApiResponse();
@@ -53,8 +53,9 @@ public IActionResult getListemployee(int iduser,string keysearch,int idcinema)
                   
                try
                  {
+                  string keysearc = keysearch == null ? "":keysearch;
                       string sql = "call cinema.GetListEmployee(@p0,@p1,@p2)";
-                   var dataget = _context.USERS.FromSqlRaw(sql,iduser,keysearch,idcinema).AsEnumerable().ToList();
+                   var dataget = _context.USERS.FromSqlRaw(sql,iduser,keysearc,idcinema).AsEnumerable().ToList();
                       successApiResponse.Status = 200;
                      successApiResponse.Message = "OK";
                      successApiResponse.Data = dataget;
@@ -102,8 +103,8 @@ public IActionResult CreateNewemployee([FromBody] USERS us)
                   
                try
                  {
-                      string sql = "call cinema.insertIntoEmployee(@p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7)";
-                   _context.Database.ExecuteSqlRaw(sql,us.Fullname,us.Email,us.phone,us.Birthday,us.Idrole,us.avatar,us.gender,us.Idcinema);
+                      string sql = "call cinema.insertIntoEmployee(@p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8)";
+                   _context.Database.ExecuteSqlRaw(sql,us.Fullname,us.Email,us.phone,us.Birthday,us.Idrole,us.avatar,us.gender,us.Idcinema,us.address);
                       _context.SaveChanges();
                       successApiResponse.Status = 200;
                      successApiResponse.Message = "OK";
@@ -152,7 +153,7 @@ public IActionResult Lockemployee( int idemployee, int statuss)
                   
                try
                  {
-                      string sql = "call cinema.LockEmployee(@p0,@p1))";
+                      string sql = "call cinema.LockEmployee(@p0,@p1)";
                    _context.Database.ExecuteSqlRaw(sql,idemployee,statuss);
                    _context.SaveChanges();
                       successApiResponse.Status = 200;

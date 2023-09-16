@@ -51,5 +51,12 @@ public partial class USERS
        public int Idusers {get;set;} 
         public int Idcinema {get;set;} 
          public int statuss {get;set;} 
+
+         public string? address {get;set;}
     
+}
+
+public partial class CINEMA
+{
+    public int Idcinema {get;set;}
 }
