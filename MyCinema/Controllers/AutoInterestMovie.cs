@@ -22,17 +22,35 @@ namespace webapiserver.Controllers
  
 public class MovieSchedule
 {
-    public string MovieName { get; set; }
+    public int idMovie { get; set; }
     public DateTime StartTime { get; set; }
     public DateTime EndTime { get; set; }
+    public int alltime {get;set;}
 }
 
 public class RoomAuto
 {
-    public string Name { get; set; }
+    public int idroom { get; set; }
     public List<MovieSchedule> Schedule { get; set; } = new List<MovieSchedule>();
 }
+ public class MovieRoomLists
+{
+    public DateTime dayStart {get;set;}
+     public DateTime dayEnd {get;set;}
+    public List<MovieSchedule> MovieList { get; set; }
+    public List<Roomdata> RoomList { get; set; }
+}
 
+public class Roomdata {
+    public int idroom {get;set;}
+}
+
+public class requestresponse {
+    public string data {get;set;}
+    public List<RoomAuto> list {get;set;}
+}
+
+ 
 // public class CinemaScheduler
 // {
 //     public static List<RoomAuto> GenerateSchedule(List<string> movieList, List<string> roomList, int durationInMinutes)
@@ -173,14 +191,14 @@ public class RoomAuto
 //     return rooms;
 // }
 
-public static List<RoomAuto> GenerateSchedule(DateTime dateStart,DateTime dateEnd,List<string> movieList, List<string> roomList, int movieDurationMinutes)
+public static List<RoomAuto> GenerateSchedule(DateTime dateStart,DateTime dateEnd,List<MovieSchedule> movieList, List<Roomdata> roomList, int movieDurationMinutes)
 {
     Random random = new Random();
     List<RoomAuto> rooms = new List<RoomAuto>();
 
-    foreach (string roomName in roomList)
+    foreach (Roomdata roomName in roomList)
     {
-        RoomAuto room = new RoomAuto { Name = roomName };
+        RoomAuto room = new RoomAuto { idroom = roomName.idroom };
 
         DateTime currentDate = dateStart;
         DateTime endDate = dateEnd;
@@ -193,14 +211,16 @@ public static List<RoomAuto> GenerateSchedule(DateTime dateStart,DateTime dateEn
             
             while (startTime.AddMinutes(movieDurationMinutes) <= endTime)
             {
-                  string randomMovie = movieList[random.Next(movieList.Count)]; // Chọn ngẫu nhiên một bộ phim
-                 string[] parts = randomMovie.Split('/'); // Tách chuỗi theo ký tự '/'
-                int movieDurationMinutess = Convert.ToInt32(parts[1]); // Chuyển đổi phần tử thứ hai thành số nguyên
+               
+                  MovieSchedule randomMovie = movieList[random.Next(movieList.Count)]; // Chọn ngẫu nhiên một bộ phim
+                //  string[] parts = randomMovie.Split('/'); // Tách chuỗi theo ký tự '/'
+                // int movieDurationMinutess = Convert.ToInt32(parts[1]); // Chuyển đổi phần tử thứ hai thành số nguyên
+               int movieDurationMinutess = Convert.ToInt32(randomMovie.alltime);
                 DateTime movieEndTime = startTime.AddMinutes(movieDurationMinutess);
-
+                 
                 MovieSchedule newMovie = new MovieSchedule
                 {
-                    MovieName = randomMovie,
+                    idMovie = randomMovie.idMovie,
                     StartTime = startTime,
                     EndTime = movieEndTime
                 };
@@ -273,8 +293,8 @@ public static List<RoomAuto> GenerateSchedule(DateTime dateStart,DateTime dateEn
 
 
 
-[HttpPost("getlistvoucher")]
-public IActionResult GetListVoucher([FromBody] MovieRoomLists datas)
+[HttpPost("AutoGetListInterest")]
+public IActionResult AutoGetListInterest([FromBody] MovieRoomLists datas)
 {
     var successApiResponse = new ApiResponse();
 
@@ -316,12 +336,13 @@ public IActionResult GetListVoucher([FromBody] MovieRoomLists datas)
 
         int durationInMinutes = 120; // Độ dài mỗi buổi phim (2 giờ)
 
-         List<string> movieList = datas.MovieList;
-        List<string> roomList = datas.RoomList;
+         List<MovieSchedule> movieList = datas.MovieList;
+        List<Roomdata> roomList = datas.RoomList;
+        requestresponse list = new requestresponse();
         DateTime dayStart = datas.dayStart;
-DateTime dayEnd = datas.dayEnd;
+        DateTime dayEnd = datas.dayEnd;
        var schedule = GenerateSchedule(dayStart,dayEnd,movieList, roomList,durationInMinutes);
-
+       list.list = schedule;
 ///////
 // List<MovieSchedule> movieList = new List<MovieSchedule>
 // {
@@ -340,7 +361,7 @@ DateTime dayEnd = datas.dayEnd;
 
                 successApiResponse.Status = 200;
                 successApiResponse.Message = "OK";
-                successApiResponse.Data = schedule;
+                successApiResponse.Data = list;
             }
             catch (Exception ex)
             {
@@ -355,11 +376,5 @@ DateTime dayEnd = datas.dayEnd;
 
     }
 
-  public class MovieRoomLists
-{
-    public DateTime dayStart {get;set;}
-     public DateTime dayEnd {get;set;}
-    public List<string> MovieList { get; set; }
-    public List<string> RoomList { get; set; }
-}
+ 
 }
