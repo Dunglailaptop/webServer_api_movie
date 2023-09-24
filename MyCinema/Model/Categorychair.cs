@@ -13,6 +13,8 @@ public partial class Categorychair
 
     public int? Price { get; set; }
 
+    public long? Idroom {get;set;}
+
     public virtual ICollection<Chair> Chairs { get; set; } = new List<Chair>();
 
     public virtual ICollection<Listcategorychair> Listcategorychairs { get; set; } = new List<Listcategorychair>();

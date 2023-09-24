@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using MyCinema.Model;
 using Newtonsoft.Json;
 using System.Security.Cryptography.X509Certificates;
+using ZstdSharp.Unsafe;
+using Microsoft.EntityFrameworkCore;
 
 namespace webapiserver.Controllers
 {
@@ -22,32 +24,38 @@ namespace webapiserver.Controllers
  
 public class MovieSchedule
 {
-    public int idMovie { get; set; }
-    public DateTime StartTime { get; set; }
-    public DateTime EndTime { get; set; }
+    public long? idMovie { get; set; }
+    public DateTime? StartTime { get; set; }
+    public DateTime? EndTime { get; set; }
     public int alltime {get;set;}
+    public string? image {get;set;}
+
+    public string? namemovie {get;set;}
 }
 
 public class RoomAuto
 {
-    public int idroom { get; set; }
+    public long? idroom { get; set; }
     public List<MovieSchedule> Schedule { get; set; } = new List<MovieSchedule>();
 }
  public class MovieRoomLists
 {
+   
     public DateTime dayStart {get;set;}
      public DateTime dayEnd {get;set;}
     public List<MovieSchedule> MovieList { get; set; }
-    public List<Roomdata> RoomList { get; set; }
+    public Roomdata RoomList { get; set; }
+    
 }
 
 public class Roomdata {
     public int idroom {get;set;}
+     public long? Idcinema {get;set;}
 }
 
 public class requestresponse {
     public string data {get;set;}
-    public List<RoomAuto> list {get;set;}
+    public RoomAuto list {get;set;}
 }
 
  
@@ -191,14 +199,13 @@ public class requestresponse {
 //     return rooms;
 // }
 
-public static List<RoomAuto> GenerateSchedule(DateTime dateStart,DateTime dateEnd,List<MovieSchedule> movieList, List<Roomdata> roomList, int movieDurationMinutes)
+public static RoomAuto GenerateSchedule( CinemaContext _context,DateTime dateStart,DateTime dateEnd,List<MovieSchedule> movieList, Roomdata roomList, int movieDurationMinutes,int breakTimeMinutes)
 {
     Random random = new Random();
-    List<RoomAuto> rooms = new List<RoomAuto>();
+    RoomAuto rooms = new RoomAuto();
 
-    foreach (Roomdata roomName in roomList)
-    {
-        RoomAuto room = new RoomAuto { idroom = roomName.idroom };
+    
+        rooms.idroom = roomList.idroom ;
 
         DateTime currentDate = dateStart;
         DateTime endDate = dateEnd;
@@ -206,7 +213,7 @@ public static List<RoomAuto> GenerateSchedule(DateTime dateStart,DateTime dateEn
         while (currentDate <= endDate)
         {
             DateTime startTime = currentDate.Date + TimeSpan.FromHours(8); // 8:00 AM
-            DateTime endTime = currentDate.Date + TimeSpan.FromHours(22).Add(TimeSpan.FromMinutes(30)); // 10:30 PM
+            DateTime endTime = currentDate.Date + TimeSpan.FromHours(23).Add(TimeSpan.FromMinutes(30)); // 10:30 PM
           
             
             while (startTime.AddMinutes(movieDurationMinutes) <= endTime)
@@ -217,26 +224,28 @@ public static List<RoomAuto> GenerateSchedule(DateTime dateStart,DateTime dateEn
                 // int movieDurationMinutess = Convert.ToInt32(parts[1]); // Chuyển đổi phần tử thứ hai thành số nguyên
                int movieDurationMinutess = Convert.ToInt32(randomMovie.alltime);
                 DateTime movieEndTime = startTime.AddMinutes(movieDurationMinutess);
-                 
+                 var data = _context.Movies.Where(x=>x.Idmovie == randomMovie.idMovie).SingleOrDefault();
                 MovieSchedule newMovie = new MovieSchedule
                 {
                     idMovie = randomMovie.idMovie,
+                    namemovie = data.Namemovie,
+                    image = data.Poster,
                     StartTime = startTime,
                     EndTime = movieEndTime
                 };
 
-                room.Schedule.Add(newMovie);
+                rooms.Schedule.Add(newMovie);
 
-                startTime = movieEndTime; // Next movie starts after current movie
+                startTime = movieEndTime.AddMinutes(breakTimeMinutes);  // Next movie starts after current movie
             }
 
            
             // Move to the next day
             currentDate = currentDate.AddDays(1);
         }
-         rooms.Add(room);
+   
 
-    }
+    
 
     return rooms;
 }
@@ -286,10 +295,144 @@ public static List<RoomAuto> GenerateSchedule(DateTime dateStart,DateTime dateEn
 //     return rooms;
 // }
 
+[HttpPost("InsertIntoAutoInterest")]
+public IActionResult InsertIntoAutoInterest([FromBody] MovieRoomLists datas)
+{
+    var successApiResponse = new ApiResponse();
+
+    string token = Request.Headers["token"];
+    string filterHeaderValue2 = Request.Headers["ProjectId"];
+    string filterHeaderValue3 = Request.Headers["Method"];
+    string expectedToken = ValidHeader.Token;
+    string method = Convert.ToString(ValidHeader.MethodPost);
+    string Pojectid = Convert.ToString(ValidHeader.Project_id);
+
+    if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(filterHeaderValue2) || string.IsNullOrEmpty(filterHeaderValue3))
+    {
+        return BadRequest("Authorize header not found in the request.");
+    }
+    else
+    {
+        if (token != expectedToken || filterHeaderValue2 != Pojectid || filterHeaderValue3 != method)
+        {
+            return Unauthorized("Invalid token.");
+        }
+        else
+        {
+            try
+            {
+           
+                 foreach(var movieList in datas.MovieList) {
+                    Cinemainterest interest = new Cinemainterest {
+                          Idroom = datas.RoomList.idroom,
+                          Idmovie = movieList.idMovie,
+                          Times = movieList.StartTime,
+                          TimeEnd = movieList.EndTime,
+                          Dateshow = movieList.StartTime,
+                          Idcinema = datas.RoomList.Idcinema
+                    };
+                       _context.Cinemainterests.Add(interest);
+                 }
+               
+            
+                 _context.SaveChanges();
+
+                successApiResponse.Status = 200;
+                successApiResponse.Message = "OK";
+                successApiResponse.Data = "";
+            }
+            catch (Exception ex)
+            {
+                successApiResponse.Status = 500;
+                successApiResponse.Message = "Internal Server Error";
+                successApiResponse.Data = ex.Message;
+            }
+        }
+    }
+    return Ok(successApiResponse);
+}
 
 
+[HttpGet("getListInterest")]
+public async Task<IActionResult> getListInterest(int idcinema, int idroom)
+{
+    var successApiResponse = new ApiResponse();
 
+    string token = Request.Headers["token"];
+    string filterHeaderValue2 = Request.Headers["ProjectId"];
+    string filterHeaderValue3 = Request.Headers["Method"];
+    string expectedToken = ValidHeader.Token;
+    string method = Convert.ToString(ValidHeader.MethodGet);
+    string Pojectid = Convert.ToString(ValidHeader.Project_id);
 
+    if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(filterHeaderValue2) || string.IsNullOrEmpty(filterHeaderValue3))
+    {
+        return BadRequest("Authorize header not found in the request.");
+    }
+    else
+    {
+        if (token != expectedToken || filterHeaderValue2 != Pojectid || filterHeaderValue3 != method)
+        {
+            return Unauthorized("Invalid token.");
+        }
+        else
+        {
+            try
+            {
+                    var data = _context.Cinemainterests.Where(x => x.Idcinema == idcinema && x.Idroom == idroom).ToList();
+
+                    requestresponse response = new requestresponse();
+
+                    // Tạo danh sách RoomAuto
+                   
+
+                    RoomAuto room = new RoomAuto
+                    {
+                    idroom = idroom, // Lấy idroom từ tham số truyền vào
+                    Schedule = new List<MovieSchedule>()
+                    };
+
+                    // Duyệt qua danh sách cinemainterest và thêm dữ liệu vào room.Schedule
+                    foreach (var item in data)
+                    {
+                    var dataMovie = await _context.Movies.Where(x => x.Idmovie == item.Idmovie).SingleOrDefaultAsync();
+
+                    if (dataMovie != null)
+                    {
+                    MovieSchedule schedule = new MovieSchedule
+                    {
+                    idMovie = item.Idmovie,
+                    StartTime = item.Times,
+                    EndTime = item.TimeEnd,
+                    image = dataMovie.Poster,
+                    namemovie = dataMovie.Namemovie
+                    };
+
+                    room.Schedule.Add(schedule);
+                    }
+                    }
+
+                  
+
+                    // Gán dữ liệu vào response
+                    response.data = ""; // Điền dữ liệu tương ứng nếu cần
+                    response.list = room; // Gán danh sách RoomAuto
+
+                    successApiResponse.Status = 200;
+                    successApiResponse.Message = "OK";
+                    successApiResponse.Data = response; 
+
+            }
+            catch (Exception ex)
+            {
+                successApiResponse.Status = 500;
+                successApiResponse.Message = "Internal Server Error";
+                successApiResponse.Data = ex.Message;
+            }
+        }
+    }
+    return Ok(successApiResponse);
+}
 
 
 
@@ -337,11 +480,11 @@ public IActionResult AutoGetListInterest([FromBody] MovieRoomLists datas)
         int durationInMinutes = 120; // Độ dài mỗi buổi phim (2 giờ)
 
          List<MovieSchedule> movieList = datas.MovieList;
-        List<Roomdata> roomList = datas.RoomList;
+        Roomdata roomList = datas.RoomList;
         requestresponse list = new requestresponse();
         DateTime dayStart = datas.dayStart;
         DateTime dayEnd = datas.dayEnd;
-       var schedule = GenerateSchedule(dayStart,dayEnd,movieList, roomList,durationInMinutes);
+       var schedule = GenerateSchedule(_context,dayStart,dayEnd,movieList, roomList,durationInMinutes,60);
        list.list = schedule;
 ///////
 // List<MovieSchedule> movieList = new List<MovieSchedule>

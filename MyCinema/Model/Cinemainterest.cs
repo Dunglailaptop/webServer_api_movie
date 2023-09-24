@@ -13,7 +13,10 @@ public partial class Cinemainterest
 
     public DateTime? Dateshow { get; set; }
 
-    public DateTime? Times { get; set; }
+    public DateTime? Times { get; set; } // bắt dầu
+    public DateTime? TimeEnd { get; set; } // kết thúc
+
+    public long? Idcinema {get;set;}
 
     public virtual ICollection<Bill> Bills { get; set; } = new List<Bill>();
 
