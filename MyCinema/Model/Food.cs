@@ -17,5 +17,7 @@ public partial class Food
 
     public int? Idcategoryfood { get; set; }
 
+    public DateTime datecreate {get;set;}
+
     public virtual ICollection<Listfoodbill> Listfoodbills { get; set; } = new List<Listfoodbill>();
 }

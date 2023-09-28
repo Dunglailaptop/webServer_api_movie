@@ -15,6 +15,9 @@ public partial class CinemaContext : DbContext
     {
     }
     //INNNER JOIN START
+     public DbSet<FoodComboWithBills>  FoodComboWithBills { get; set; }
+     public DbSet<FoodComboBill> FoodComboBill { get; set; }
+     public DbSet<FoodCombo> Foodcombo { get; set; }
     public DbSet<CINEMA> CINEMAS { get; set; }
       public DbSet<USERS> USERS { get; set; }
      public DbSet<CHAIR> CHAIRS { get; set; }
@@ -490,7 +493,12 @@ public partial class CinemaContext : DbContext
          OnModelCreatingPartial(modelBuilder);
           modelBuilder.Entity<CINEMA>()
         .HasNoKey();
-        OnModelCreatingPartial(modelBuilder);
+            modelBuilder.Entity<FoodCombo>()
+            .HasKey(fc => fc.idcombo); // Assuming Id is the primary key property
+           modelBuilder.Entity<FoodComboBill>()
+            .HasKey(fc => fc.Id); 
+              modelBuilder.Entity<FoodComboWithBills>()
+            .HasKey(fc => fc.IdBillfoodCombo); 
         //INNER JOIN END
     }
     //   protected override void OnModelCreating(ModelBuilder modelBuilder)
