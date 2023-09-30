@@ -110,15 +110,26 @@ public IActionResult AddFoodComboFood([FromBody] FoodComboNew combofood )
                try
                  {
                 List<FoodComboBill> data  = new List<FoodComboBill>();
-                  foreach (var foods in combofood.foodCreates) {
-                       FoodComboBill combo = new FoodComboBill {
-                       idcombo = combofood.idcombo,
-                        Idfood = foods.Idfood
-                    };
-                    data.Add(combo);
-                    _context.FoodComboBill.Add(combo);
+                FoodCombo foodcomboo = new FoodCombo {
+                  nametittle = combofood.nametittle,
+                  descriptions = combofood.discription,
+                  priceCombo = combofood.priceCombo,
+                  picture = combofood.picture
+                };
+                   _context.Foodcombo.Add(foodcomboo);
                     _context.SaveChanges();
-                  }
+                    if (foodcomboo.idcombo != 0) {
+                          foreach (var foods in combofood.foodCreates) {
+                          FoodComboBill combo = new FoodComboBill {
+                          idcombo = foodcomboo.idcombo,
+                          Idfood = foods.Idfood
+                          };
+                          data.Add(combo);
+                          _context.FoodComboBill.Add(combo);
+                          _context.SaveChanges();
+                          }
+                    }
+                 
                  
                       successApiResponse.Status = 200;
                      successApiResponse.Message = "OK";
@@ -229,15 +240,19 @@ public IActionResult getListFood(int Idcategoryfood)
           }else{
             // if (date != null && Idmovie != null){
                 
-                  
+                
                try
                  {
               
                  
 
-
-                 
-                     var data  = _context.Foods.Where(x=>x.Idcategoryfood == Idcategoryfood).ToList();
+                    List<Food> data = new List<Food>();
+                 if (Idcategoryfood == 0) {
+                      data  = _context.Foods.ToList();
+                 }else {
+                   data  = _context.Foods.Where(x=>x.Idcategoryfood == Idcategoryfood).ToList();
+                 }
+                   
                  
                       successApiResponse.Status = 200;
                      successApiResponse.Message = "OK";
