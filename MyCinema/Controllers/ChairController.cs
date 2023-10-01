@@ -53,11 +53,24 @@ public IActionResult getListVoucher(long Idroom,long idcinema,int idinterest)
                   
                try
                  {
+                  List<CHAIRNEW> chairdata = new List<CHAIRNEW>(); 
                       string sql = "call cinema.getListChairRoomCinema(@p0,@p1,@p2)";
                    var dataget = _context.CHAIRS.FromSqlRaw(sql,Idroom,idcinema,idinterest).AsEnumerable().ToList();
+                   foreach (var item in dataget) {
+                     var datagetprice = _context.Categorychairs.Where(x=>x.Idcategorychair == item.Idcategorychair).SingleOrDefault();
+                     CHAIRNEW chairs = new CHAIRNEW(){
+                        Idchair = item.Idchair,
+                        RowChar = item.RowChar,
+                        NumberChair = item.NumberChair,
+                        bill = item.bill,
+                        price = datagetprice.Price,
+                        Idcategorychair = item.Idcategorychair
+                     };
+                     chairdata.Add(chairs);
+                   }
                       successApiResponse.Status = 200;
                      successApiResponse.Message = "OK";
-                     successApiResponse.Data = dataget;
+                     successApiResponse.Data = chairdata;
                  }
                  catch (IndexOutOfRangeException ex)
                   {
@@ -198,6 +211,20 @@ public class RoomREsponse {
    public int numberChair   {get;set;}
       public int allschair   {get;set;}
          public string nameroom   {get;set;}
+}
+
+public partial class CHAIRNEW
+{
+    public int Idchair { get; set; }
+    
+    public int NumberChair { get; set; }
+
+     public string RowChar { get; set; }
+
+     public long? bill {get;set;} 
+     public int Idcategorychair {get;set;}
+     public int? price {get;set;}
+    
 }
 
 }

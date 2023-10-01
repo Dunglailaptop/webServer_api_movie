@@ -435,6 +435,63 @@ public async Task<IActionResult> getListInterest(int idcinema, int idroom)
 }
 
 
+[HttpGet("getInfoInterestMovie")]
+public async Task<IActionResult> getInfoInterestMovie(int idmoive,int idinterest,int idroom,int idcinema)
+{
+    var successApiResponse = new ApiResponse();
+
+    string token = Request.Headers["token"];
+    string filterHeaderValue2 = Request.Headers["ProjectId"];
+    string filterHeaderValue3 = Request.Headers["Method"];
+    string expectedToken = ValidHeader.Token;
+    string method = Convert.ToString(ValidHeader.MethodGet);
+    string Pojectid = Convert.ToString(ValidHeader.Project_id);
+
+    if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(filterHeaderValue2) || string.IsNullOrEmpty(filterHeaderValue3))
+    {
+        return BadRequest("Authorize header not found in the request.");
+    }
+    else
+    {
+        if (token != expectedToken || filterHeaderValue2 != Pojectid || filterHeaderValue3 != method)
+        {
+            return Unauthorized("Invalid token.");
+        }
+        else
+        {
+            try
+            {
+              
+                  var datainterest = _context.Cinemainterests.Where(x=>x.Idinterest == idinterest).SingleOrDefault();
+                  var datamovie = _context.Movies.Where(x=>x.Idmovie == idmoive).SingleOrDefault();
+                  var dataroom = _context.Rooms.Where(x=>x.Idroom == idroom).SingleOrDefault();
+                  var datacinema = _context.Cinemas.Where(x=>x.Idcinema == idcinema).SingleOrDefault();
+                 MovieInterestShowInfo dataget = new MovieInterestShowInfo{
+                     nameroom = dataroom.Nameroom,
+                     namecinema = datacinema.Namecinema,
+                     startstime = datainterest.Times,
+                     endtime = datainterest.TimeEnd,
+                     dateshow = datainterest.Dateshow,
+                     namemovie = datamovie.Namemovie
+
+                 };
+                    successApiResponse.Status = 200;
+                    successApiResponse.Message = "OK";
+                    successApiResponse.Data =  dataget; 
+
+            }
+            catch (Exception ex)
+            {
+                successApiResponse.Status = 500;
+                successApiResponse.Message = "Internal Server Error";
+                successApiResponse.Data = ex.Message;
+            }
+        }
+    }
+    return Ok(successApiResponse);
+}
+
+
 
 [HttpPost("AutoGetListInterest")]
 public IActionResult AutoGetListInterest([FromBody] MovieRoomLists datas)
@@ -518,6 +575,15 @@ public IActionResult AutoGetListInterest([FromBody] MovieRoomLists datas)
 }
 
     }
+public class MovieInterestShowInfo {
+   public string namemovie {get;set;}
+   public DateTime? startstime {get;set;}
+   public DateTime? endtime {get;set;}
+   public DateTime? dateshow {get;set;}
 
+   public string nameroom {get;set;}
+
+   public string namecinema {get;set;}
+}
  
 }

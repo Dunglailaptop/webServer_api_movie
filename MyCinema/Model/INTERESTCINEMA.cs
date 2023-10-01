@@ -32,6 +32,8 @@ public partial class CHAIR
      public string RowChar { get; set; }
 
      public long? bill {get;set;} 
+     public int Idcategorychair {get;set;}
+   
     
 }
 
