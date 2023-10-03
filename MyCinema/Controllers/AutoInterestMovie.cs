@@ -472,8 +472,8 @@ public async Task<IActionResult> getInfoInterestMovie(int idmoive,int idinterest
                      startstime = datainterest.Times,
                      endtime = datainterest.TimeEnd,
                      dateshow = datainterest.Dateshow,
-                     namemovie = datamovie.Namemovie
-
+                     namemovie = datamovie.Namemovie,
+                      poster = datamovie.Poster
                  };
                     successApiResponse.Status = 200;
                     successApiResponse.Message = "OK";
@@ -584,6 +584,7 @@ public class MovieInterestShowInfo {
    public string nameroom {get;set;}
 
    public string namecinema {get;set;}
+   public string poster {get;set;}
 }
  
 }
