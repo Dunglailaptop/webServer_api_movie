@@ -11,5 +11,7 @@ public partial class Account
 
     public long? Idusers { get; set; }
 
+    public int? points {get;set;}
+
     public virtual User? IdusersNavigation { get; set; }
 }

@@ -462,22 +462,22 @@ public async Task<IActionResult> getInfoInterestMovie(int idmoive,int idinterest
             try
             {
               
-                  var datainterest = _context.Cinemainterests.Where(x=>x.Idinterest == idinterest).SingleOrDefault();
-                  var datamovie = _context.Movies.Where(x=>x.Idmovie == idmoive).SingleOrDefault();
-                  var dataroom = _context.Rooms.Where(x=>x.Idroom == idroom).SingleOrDefault();
-                  var datacinema = _context.Cinemas.Where(x=>x.Idcinema == idcinema).SingleOrDefault();
-                 MovieInterestShowInfo dataget = new MovieInterestShowInfo{
-                     nameroom = dataroom.Nameroom,
-                     namecinema = datacinema.Namecinema,
-                     startstime = datainterest.Times,
-                     endtime = datainterest.TimeEnd,
-                     dateshow = datainterest.Dateshow,
-                     namemovie = datamovie.Namemovie,
-                      poster = datamovie.Poster
-                 };
-                    successApiResponse.Status = 200;
-                    successApiResponse.Message = "OK";
-                    successApiResponse.Data =  dataget; 
+                        var datainterest = _context.Cinemainterests.Where(x=>x.Idinterest == idinterest).SingleOrDefault();
+                        var datamovie = _context.Movies.Where(x=>x.Idmovie == idmoive).SingleOrDefault();
+                        var dataroom = _context.Rooms.Where(x=>x.Idroom == idroom).SingleOrDefault();
+                        var datacinema = _context.Cinemas.Where(x=>x.Idcinema == idcinema).SingleOrDefault();
+                        MovieInterestShowInfo dataget = new MovieInterestShowInfo{
+                                nameroom = dataroom.Nameroom,
+                                namecinema = datacinema.Namecinema,
+                                startstime = datainterest.Times,
+                                endtime = datainterest.TimeEnd,
+                                dateshow = datainterest.Dateshow,
+                                namemovie = datamovie.Namemovie,
+                                poster = datamovie.Poster
+                        };
+                        successApiResponse.Status = 200;
+                        successApiResponse.Message = "OK";
+                        successApiResponse.Data =  dataget; 
 
             }
             catch (Exception ex)
