@@ -1,26 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/MyCinema.csproj": {}
+    "/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/MyCinema.csproj": {}
   },
   "projects": {
-    "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/MyCinema.csproj": {
+    "/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/MyCinema.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/MyCinema.csproj",
+        "projectUniqueName": "/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/MyCinema.csproj",
         "projectName": "MyCinema",
-        "projectPath": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/MyCinema.csproj",
-        "packagesPath": "/Users/dungtien/.nuget/packages/",
-        "outputPath": "/Library/WebServer/Documents/webserverCinema/webServer_api_movie/MyCinema/obj/",
+        "projectPath": "/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/MyCinema.csproj",
+        "packagesPath": "/Users/nguyenxuantiendung/.nuget/packages/",
+        "outputPath": "/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/dungtien/.nuget/NuGet/NuGet.Config"
+          "/Users/nguyenxuantiendung/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/sdk/7.0.306/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -41,7 +40,7 @@
           "dependencies": {
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[7.0.9, )"
+              "version": "[6.0.0, )"
             },
             "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
               "target": "Package",
@@ -93,7 +92,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.306/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.401/RuntimeIdentifierGraph.json"
         }
       }
     }
