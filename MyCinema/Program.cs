@@ -9,12 +9,17 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Http.Features;
+using webapiserver.Controllers;
+using System.Net.WebSockets;
+using Microsoft.AspNetCore.SignalR;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+// builder.Services.AddSignalR();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -45,9 +50,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
         // ...
     
-
+builder.Services.AddSignalR();
 var app = builder.Build();
-
+// app.MapHub<MiClaseSignalR>("/signalR");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -71,6 +76,10 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
+// app.UseWebSockets();
+// app.UseMiddleware<MiClaseSignalR>();
+app.MapHub<ChatHub>("/chatHub");
 app.MapControllers();
+
 
 app.Run();

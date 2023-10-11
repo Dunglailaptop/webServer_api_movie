@@ -38,7 +38,7 @@ public IActionResult PaymentBill([FromBody] Bills bills)
        string filterHeaderValue2 = Request.Headers["ProjectId"];
        string filterHeaderValue3 = Request.Headers["Method"];
        string expectedToken = ValidHeader.Token;
-       string method =Convert.ToString(ValidHeader.MethodGet);
+       string method =Convert.ToString(ValidHeader.MethodPost);
        string Pojectid = Convert.ToString(ValidHeader.Project_id);
     //check header
         if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(filterHeaderValue2) || string.IsNullOrEmpty(filterHeaderValue3))
@@ -57,39 +57,41 @@ public IActionResult PaymentBill([FromBody] Bills bills)
                try
                  {
                     Bills bl = new Bills();
-                    var dataAccount = _context.Accounts.Where(x=>x.Idusers == bills.Idaccount).SingleOrDefault();
-                    if (dataAccount.points > bills.bills.Totalamount) {
+                    var dataAccount = _context.Accounts.Where(x=>x.Idusers == bills.Iduser).SingleOrDefault();
+                    if (dataAccount.points > bills.Totalamount) {
                        Bill billspay = new Bill {
-                         Idcinema = bills.bills.Idcinema,
-                         Idinterest = bills.bills.Idinterest,
-                         Iduser = bills.bills.Iduser,
-                         Idmovie = bills.bills.Idmovie,
-                         Vat = bills.bills.Vat,
-                         Quantityticket = bills.bills.Quantityticket,
-                         Totalamount = bills.bills.Totalamount,
+                         Idcinema = bills.Idcinema,
+                         Idinterest = bills.Idinterest,
+                         Iduser = bills.Iduser,
+                         Idmovie = bills.Idmovie,
+                         Vat = bills.Vat,
+                         Quantityticket = bills.Quantityticket,
+                         Totalamount = bills.Totalamount,
                          Datebill = DateTime.Now,
-                         Note = bills.bills.Note,
-                         Statusbill = bills.bills.Statusbill,
+                         Note = bills.Note,
+                         Statusbill = bills.Statusbill,
                           Idvoucher = 10
                        };
                        _context.Bills.Add(billspay);
                        _context.SaveChanges();
-                       bl.bills.Idbill = billspay.Idbill;
+                       bl.Idbill = billspay.Idbill;
                        if (billspay.Idbill != 0) {
-                            foreach (var item in bills.bills.Tickets) {
+                            foreach (var item in bills.ticket) {
                                 Ticket TC = new Ticket {
                                 Idbill =  billspay.Idbill,
                                 Idchair = item.Idchair,
-                                Idinterest = bills.bills.Idinterest,
+                                Idinterest = bills.Idinterest,
                                 Pricechair = item.Pricechair
                                 };
+                                _context.Tickets.Add(TC);
+                                _context.SaveChanges();
                             }
                        }
                       if (bills.combobill.Count != 0){
                          foreach(var item in bills.combobill) {
                               FoodComboWithBills foodcombowithbill = new FoodComboWithBills {
                                 idcombo = item.idcombo,
-                                Idbill = item.Idbill,
+                                Idbill = billspay.Idbill,
                               };
                               _context.FoodComboWithBills.Add(foodcombowithbill);
                               _context.SaveChanges();
@@ -97,7 +99,7 @@ public IActionResult PaymentBill([FromBody] Bills bills)
                       };
 
                     }   else {
-
+                      return BadRequest("So tien trong tai khoan cua ban khong du xin vui long kiem tra lai");
                     }  
                 
                       successApiResponse.Status = 200;
@@ -121,12 +123,54 @@ public IActionResult PaymentBill([FromBody] Bills bills)
 
 public class Bills {
 
-    public long? Idaccount {get;set;}
-    public Bill bills {get;set;}
+    
+     public long Idbill { get; set; }
 
-    public List<Ticket> ticket {get;set;}
+    public long? Idmovie { get; set; }
 
-    public List<FoodComboWithBills> combobill {get;set;} 
+    public int? Idvoucher { get; set; }
+
+    public long? Iduser { get; set; }
+
+    public int? Idinterest { get; set; }
+
+    public long? Idcinema { get; set; }
+
+    public int? Quantityticket { get; set; }
+
+    public int? Vat { get; set; }
+
+    public int? Totalamount { get; set; }
+
+    public DateTime? Datebill { get; set; }
+
+    public string? Note { get; set; }
+
+    public int? Statusbill { get; set; }
+
+    public List<ticketes> ticket {get;set;}
+
+    public List<combobills> combobill {get;set;} 
+}
+
+public class ticketes {
+    public long Idticket { get; set; }
+
+    public int? Idchair { get; set; }
+
+    public int? Idinterest { get; set; }
+
+    public int? Pricechair { get; set; }
+
+    public long? Idbill { get; set; }
+}
+
+public class combobills {
+  public int IdBillfoodCombo {get;set;}
+
+      public int idcombo {get;set;}
+
+      public long? Idbill {get;set;}
 }
 
 }

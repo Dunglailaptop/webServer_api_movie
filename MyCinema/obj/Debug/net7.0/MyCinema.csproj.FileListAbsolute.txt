@@ -253,3 +253,14 @@
 /Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/obj/Debug/net7.0/MyCinema.pdb
 /Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/obj/Debug/net7.0/MyCinema.genruntimeconfig.cache
 /Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/obj/Debug/net7.0/ref/MyCinema.dll
+/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/bin/Debug/net7.0/System.Net.WebSockets.WebSocketProtocol.dll
+/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/bin/Debug/net7.0/Microsoft.AspNetCore.Connections.Abstractions.dll
+/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/bin/Debug/net7.0/Microsoft.AspNetCore.Http.Connections.Client.dll
+/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/bin/Debug/net7.0/Microsoft.AspNetCore.Http.Connections.Common.dll
+/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/bin/Debug/net7.0/Microsoft.AspNetCore.SignalR.Client.dll
+/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/bin/Debug/net7.0/Microsoft.AspNetCore.SignalR.Client.Core.dll
+/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/bin/Debug/net7.0/Microsoft.AspNetCore.SignalR.Common.dll
+/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/bin/Debug/net7.0/Microsoft.AspNetCore.SignalR.Protocols.Json.dll
+/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/bin/Debug/net7.0/Microsoft.Extensions.Features.dll
+/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/bin/Debug/net7.0/Microsoft.Extensions.Logging.Abstractions.dll
+/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/bin/Debug/net7.0/Microsoft.Extensions.Options.dll
