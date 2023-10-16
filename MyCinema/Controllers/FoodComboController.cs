@@ -339,6 +339,59 @@ public IActionResult getListComboFood()
  return Ok(successApiResponse);
 }
 
+// [HttpGet("getListFoods")]
+// public IActionResult getListFoods(int Idcategoryfood)
+// {
+//     // khoi tao api response
+//     var successApiResponse = new ApiResponse();
+//     //header
+//        string token = Request.Headers["token"];
+//        string filterHeaderValue2 = Request.Headers["ProjectId"];
+//        string filterHeaderValue3 = Request.Headers["Method"];
+//        string expectedToken = ValidHeader.Token;
+//        string method =Convert.ToString(ValidHeader.MethodGet);
+//        string Pojectid = Convert.ToString(ValidHeader.Project_id);
+//     //check header
+//         if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(filterHeaderValue2) || string.IsNullOrEmpty(filterHeaderValue3))
+//         {
+//         // The "Authorize" header was not found in the request
+//            return BadRequest("Authorize header not found in the request.");
+//         }else {
+
+//             if (token != expectedToken || filterHeaderValue2 != Pojectid || filterHeaderValue3 != method)
+//           {
+//             return Unauthorized("Invalid token."); // Return an error response if the tokens don't match
+//           }else{
+//             // if (date != null && Idmovie != null){
+                
+                  
+//                try
+//                  {
+              
+                 
+
+
+                 
+//                      var data  = _context.Categoryfoods.ToList();
+                 
+//                       successApiResponse.Status = 200;
+//                      successApiResponse.Message = "OK";
+//                      successApiResponse.Data = data;
+//                  }
+//                  catch (IndexOutOfRangeException ex)
+//                   {
+    
+//                   }     
+//             // }else {
+//             //     return BadRequest("khong tim thay thong tin");
+//             // }
+                 
+
+//            }
+
+//         }
+//  return Ok(successApiResponse);
+// }
 
 [HttpGet("getListCategoryFood")]
 public IActionResult getListCategoryFood()

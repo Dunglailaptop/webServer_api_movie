@@ -23,6 +23,10 @@ public partial class CinemaContext : DbContext
      public DbSet<CHAIR> CHAIRS { get; set; }
     public DbSet<INTERESTCINEMA> INTERESTCINEMA { get; set; }
     public DbSet<LISTCINEMA> LISTCINEMA {get;set;}
+
+    public DbSet<FoodCombillPayment> FoodCombillPayment {get;set;}
+
+    public DbSet<ListFoodCombo> ListFoodCombo {get;set;}
     //INNERHOIN END
     public virtual DbSet<Account> Accounts { get; set; }
 
@@ -499,6 +503,10 @@ public partial class CinemaContext : DbContext
             .HasKey(fc => fc.Id); 
               modelBuilder.Entity<FoodComboWithBills>()
             .HasKey(fc => fc.IdBillfoodCombo); 
+               modelBuilder.Entity<FoodCombillPayment>()
+            .HasKey(fc => fc.id); 
+               modelBuilder.Entity<ListFoodCombo>()
+            .HasKey(fc => fc.id); 
         //INNER JOIN END
     }
     //   protected override void OnModelCreating(ModelBuilder modelBuilder)
