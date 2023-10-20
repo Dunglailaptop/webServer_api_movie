@@ -24,13 +24,18 @@ namespace webapiserver.Controllers
  
 public class MovieSchedule
 {
+    public long? idinterest {get;set;}
     public long? idMovie { get; set; }
     public DateTime? StartTime { get; set; }
     public DateTime? EndTime { get; set; }
-    public int alltime {get;set;}
+    public int? alltime {get;set;}
     public string? image {get;set;}
 
     public string? namemovie {get;set;}
+
+    public int status {get;set;}
+
+    public int resetTime {get;set;}
 }
 
 public class RoomAuto
@@ -45,6 +50,8 @@ public class RoomAuto
      public DateTime dayEnd {get;set;}
     public List<MovieSchedule> MovieList { get; set; }
     public Roomdata RoomList { get; set; }
+
+    public int breakTime {get;set;}
     
 }
 
@@ -213,7 +220,7 @@ public static RoomAuto GenerateSchedule( CinemaContext _context,DateTime dateSta
         while (currentDate <= endDate)
         {
             DateTime startTime = currentDate.Date + TimeSpan.FromHours(8); // 8:00 AM
-            DateTime endTime = currentDate.Date + TimeSpan.FromHours(23).Add(TimeSpan.FromMinutes(30)); // 10:30 PM
+            DateTime endTime = currentDate.Date + TimeSpan.FromHours(23).Add(TimeSpan.FromMinutes(breakTimeMinutes)); // 10:30 PM
           
             
             while (startTime.AddMinutes(movieDurationMinutes) <= endTime)
@@ -231,7 +238,9 @@ public static RoomAuto GenerateSchedule( CinemaContext _context,DateTime dateSta
                     namemovie = data.Namemovie,
                     image = data.Poster,
                     StartTime = startTime,
-                    EndTime = movieEndTime
+                    EndTime = movieEndTime,
+                    alltime = data.Timeall,
+                    resetTime = breakTimeMinutes
                 };
 
                 rooms.Schedule.Add(newMovie);
@@ -294,6 +303,65 @@ public static RoomAuto GenerateSchedule( CinemaContext _context,DateTime dateSta
 
 //     return rooms;
 // }
+// class update status
+public class updatestatus {
+    public int idinterest {get;set;}
+    public int status {get;set;}
+}
+// API update status interest
+[HttpPost("UpdateStatusInterest")]
+public IActionResult UpdateStatusInterest([FromBody] updatestatus updatestatus)
+{
+    // khoi tao api response
+    var successApiResponse = new ApiResponse();
+    //header
+       string token = Request.Headers["token"];
+       string filterHeaderValue2 = Request.Headers["ProjectId"];
+       string filterHeaderValue3 = Request.Headers["Method"];
+       string expectedToken = ValidHeader.Token;
+       string method =Convert.ToString(ValidHeader.MethodPost);
+       string Pojectid = Convert.ToString(ValidHeader.Project_id);
+    //check header
+        if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(filterHeaderValue2) || string.IsNullOrEmpty(filterHeaderValue3))
+        {
+        // The "Authorize" header was not found in the request
+           return BadRequest("Authorize header not found in the request.");
+        }else {
+
+            if (token != expectedToken || filterHeaderValue2 != Pojectid || filterHeaderValue3 != method)
+          {
+            return Unauthorized("Invalid token."); // Return an error response if the tokens don't match
+          }else{
+            // if (date != null && Idmovie != null){
+                
+                  
+               try
+                 {
+                    
+                    var entity = _context.Cinemainterests.Find(updatestatus.idinterest);
+                    entity.statusinterest = updatestatus.status;
+                    _context.Cinemainterests.Update(entity);
+                    _context.SaveChanges();
+                      successApiResponse.Status = 200;
+                     successApiResponse.Message = "OK";
+                     successApiResponse.Data = entity;
+                 }
+                 catch (IndexOutOfRangeException ex)
+                  {
+    
+                  }     
+            // }else {
+            //     return BadRequest("khong tim thay thong tin");
+            // }
+                 
+
+           }
+
+        }
+ return Ok(successApiResponse);
+}
+
+
 
 [HttpPost("InsertIntoAutoInterest")]
 public IActionResult InsertIntoAutoInterest([FromBody] MovieRoomLists datas)
@@ -329,7 +397,10 @@ public IActionResult InsertIntoAutoInterest([FromBody] MovieRoomLists datas)
                           Times = movieList.StartTime,
                           TimeEnd = movieList.EndTime,
                           Dateshow = movieList.StartTime,
-                          Idcinema = datas.RoomList.Idcinema
+                          Idcinema = datas.RoomList.Idcinema,
+                          resetTime = datas.breakTime,
+                          statusinterest = 0
+
                     };
                        _context.Cinemainterests.Add(interest);
                  }
@@ -354,7 +425,7 @@ public IActionResult InsertIntoAutoInterest([FromBody] MovieRoomLists datas)
 
 
 [HttpGet("getListInterest")]
-public async Task<IActionResult> getListInterest(int idcinema, int idroom)
+public async Task<IActionResult> getListInterest(int idcinema, int idroom,string date)
 {
     var successApiResponse = new ApiResponse();
 
@@ -379,7 +450,9 @@ public async Task<IActionResult> getListInterest(int idcinema, int idroom)
         {
             try
             {
-                    var data = _context.Cinemainterests.Where(x => x.Idcinema == idcinema && x.Idroom == idroom).ToList();
+                    var sql = "SELECT * FROM cinema.Cinemainterest s WHERE DATE_FORMAT(s.Times, '%Y-%m-%d') LIKE '" + date + "%' and Idroom = '"+ idroom +"' and Idcinema = '"+ idcinema +"'";
+                    var data = _context.Cinemainterests.FromSqlRaw(sql).ToList();
+
 
                     requestresponse response = new requestresponse();
 
@@ -405,7 +478,11 @@ public async Task<IActionResult> getListInterest(int idcinema, int idroom)
                     StartTime = item.Times,
                     EndTime = item.TimeEnd,
                     image = dataMovie.Poster,
-                    namemovie = dataMovie.Namemovie
+                    namemovie = dataMovie.Namemovie,
+                    alltime = dataMovie.Timeall,
+                    status = item.statusinterest,
+                    idinterest = item.Idinterest,
+                    resetTime = item.resetTime
                     };
 
                     room.Schedule.Add(schedule);
@@ -544,7 +621,7 @@ public IActionResult AutoGetListInterest([FromBody] MovieRoomLists datas)
         requestresponse list = new requestresponse();
         DateTime dayStart = datas.dayStart;
         DateTime dayEnd = datas.dayEnd;
-       var schedule = GenerateSchedule(_context,dayStart,dayEnd,movieList, roomList,durationInMinutes,60);
+       var schedule = GenerateSchedule(_context,dayStart,dayEnd,movieList, roomList,durationInMinutes,datas.breakTime);
        list.list = schedule;
 ///////
 // List<MovieSchedule> movieList = new List<MovieSchedule>
@@ -576,6 +653,8 @@ public IActionResult AutoGetListInterest([FromBody] MovieRoomLists datas)
     }
     return Ok(successApiResponse);
 }
+
+
 
     }
 public class MovieInterestShowInfo {

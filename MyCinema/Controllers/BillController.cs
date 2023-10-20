@@ -158,6 +158,8 @@ public IActionResult postPaymentFoodComboBill(paymentBill foodcombobill)
                   foodcombo.numbers = foodcombobill.numbers;
                   foodcombo.total_price = foodcombobill.total_price;
                   foodcombo.iduser = foodcombobill.iduser;
+                  foodcombo.idcinemas = foodcombobill.idcinemas;
+                  foodcombo.statusbillfoodcombo = 0;
                      _context.FoodCombillPayment.Add(foodcombo);
                      _context.SaveChanges();
                      if (foodcombo.id != null) {
@@ -375,6 +377,75 @@ public IActionResult getListAllBillTicket(long? idcinema,int status)
  return Ok(successApiResponse);
 }
 
+[HttpGet("getListAllBillFoodCombo")]
+public IActionResult getListAllBillFoodCombo(int idcinema,int status)
+{
+    // khoi tao api response
+    var successApiResponse = new ApiResponse();
+    //header
+       string token = Request.Headers["token"];
+       string filterHeaderValue2 = Request.Headers["ProjectId"];
+       string filterHeaderValue3 = Request.Headers["Method"];
+       string expectedToken = ValidHeader.Token;
+       string method =Convert.ToString(ValidHeader.MethodGet);
+       string Pojectid = Convert.ToString(ValidHeader.Project_id);
+    //check header
+        if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(filterHeaderValue2) || string.IsNullOrEmpty(filterHeaderValue3))
+        {
+        // The "Authorize" header was not found in the request
+           return BadRequest("Authorize header not found in the request.");
+        }else {
+
+            if (token != expectedToken || filterHeaderValue2 != Pojectid || filterHeaderValue3 != method)
+          {
+            return Unauthorized("Invalid token."); // Return an error response if the tokens don't match
+          }else{
+            // if (date != null && Idmovie != null){
+                
+                  
+               try
+                 {   
+                    
+                      List<InfoBillFoodCombo> combobill = new List<InfoBillFoodCombo>();
+                      var dataBillFoodcombo = _context.FoodCombillPayment.Where(x => x.idcinemas == idcinema && x.statusbillfoodcombo == status).ToList();
+
+                      foreach (var item in dataBillFoodcombo) {
+                      InfoBillFoodCombo infobillfoodcombo = new InfoBillFoodCombo();
+                      infobillfoodcombo.total_prices = item.total_price;
+                      infobillfoodcombo.quantity = item.numbers;
+                      infobillfoodcombo.time = item.datetimes;
+                      infobillfoodcombo.id = item.id;
+                      infobillfoodcombo.status = item.statusbillfoodcombo;
+                      var dataGetInfoListFoodCombo = _context.ListFoodCombo.Where(x => x.idfoodcombobill == item.id).ToList();
+
+                      foreach (var item2 in dataGetInfoListFoodCombo) {
+                         var datagetFoodcomboonly = _context.Foodcombo.Where(x => x.idcombo == item2.Idfoodcombo).SingleOrDefault();
+                         infobillfoodcombo.listfoodcombo.Add(datagetFoodcomboonly);
+                        }
+                         combobill.Add(infobillfoodcombo);
+                      }
+                      
+
+                        successApiResponse.Status = 200;
+                        successApiResponse.Message = "OK";
+                        successApiResponse.Data = combobill;
+
+                 }
+                 catch (IndexOutOfRangeException ex)
+                  {
+    
+                  }     
+            // }else {
+            //     return BadRequest("khong tim thay thong tin");
+            // }
+                 
+
+           }
+
+        }
+ return Ok(successApiResponse);
+}
+
 [HttpGet("getListBillFoodinAccount")]
 public IActionResult getListBillFoodinAccount(long? iduser)
 {
@@ -450,6 +521,8 @@ public class InfoBillFoodCombo {
 public int quantity {get;set;}
   
 public DateTime time {get;set;}
+
+public int status {get;set;}
 public List<FoodCombo> listfoodcombo {get;set;} = new List<FoodCombo>();
 
 }
@@ -490,6 +563,9 @@ public class paymentBill {
     public int total_price {get;set;}
 
     public long? iduser {get;set;}
+
+    public long? idcinemas {get;set;}
+    public int status {get;set;}
   public List<ListFoodCombo> foodComboBills {get;set;}
 }
 

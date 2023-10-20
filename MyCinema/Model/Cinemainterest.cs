@@ -18,6 +18,10 @@ public partial class Cinemainterest
 
     public long? Idcinema {get;set;}
 
+    public int statusinterest {get;set;}
+
+    public int  resetTime {get;set;}
+
     public virtual ICollection<Bill> Bills { get; set; } = new List<Bill>();
 
     public virtual Movie? IdmovieNavigation { get; set; }

@@ -17,5 +17,9 @@ public partial class FoodCombillPayment
     public int total_price {get;set;}
 
     public long? iduser {get;set;}
+
+    public long? idcinemas {get;set;}
+
+    public int statusbillfoodcombo {get;set;}
     
 }
