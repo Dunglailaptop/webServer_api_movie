@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "qKCNVuhMJpCLFTN+VLZ21FUsJo4L3ziGt+CGRYVzqXs=",
+  "Hash": "LBROjI6+5yowX6mgEMDa6lIbSrv/WJR8fdz2uxL6EyI=",
   "Source": "MyCinema",
   "BasePath": "_content/MyCinema",
   "Mode": "Default",
@@ -457,6 +457,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Uploads/Movie/4F85FE20-A164-49DA-8909-83EC856C29B7.jpeg/4F85FE20-A164-49DA-8909-83EC856C29B7.jpeg"
+    },
+    {
+      "Identity": "/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/54F128BE-0175-440E-AF9C-5545FCAA1797.webp/54F128BE-0175-440E-AF9C-5545FCAA1797.webp",
+      "SourceId": "MyCinema",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/wwwroot/",
+      "BasePath": "_content/MyCinema",
+      "RelativePath": "Uploads/Movie/54F128BE-0175-440E-AF9C-5545FCAA1797.webp/54F128BE-0175-440E-AF9C-5545FCAA1797.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Uploads/Movie/54F128BE-0175-440E-AF9C-5545FCAA1797.webp/54F128BE-0175-440E-AF9C-5545FCAA1797.webp"
     },
     {
       "Identity": "/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/6353CE89-14AB-4C5C-BD1B-E707C6C16812.jpeg/6353CE89-14AB-4C5C-BD1B-E707C6C16812.jpeg",

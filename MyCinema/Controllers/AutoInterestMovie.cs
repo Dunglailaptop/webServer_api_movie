@@ -423,6 +423,62 @@ public IActionResult InsertIntoAutoInterest([FromBody] MovieRoomLists datas)
     return Ok(successApiResponse);
 }
 
+//
+public class timeinterest {
+    public int idinterest {get;set;}
+
+    public long idmovie {get;set;}
+
+}
+
+[HttpPost("UpdateInterestMovie")]
+public IActionResult UpdateInterestMovie([FromBody] timeinterest times)
+{
+    var successApiResponse = new ApiResponse();
+
+    string token = Request.Headers["token"];
+    string filterHeaderValue2 = Request.Headers["ProjectId"];
+    string filterHeaderValue3 = Request.Headers["Method"];
+    string expectedToken = ValidHeader.Token;
+    string method = Convert.ToString(ValidHeader.MethodPost);
+    string Pojectid = Convert.ToString(ValidHeader.Project_id);
+
+    if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(filterHeaderValue2) || string.IsNullOrEmpty(filterHeaderValue3))
+    {
+        return BadRequest("Authorize header not found in the request.");
+    }
+    else
+    {
+        if (token != expectedToken || filterHeaderValue2 != Pojectid || filterHeaderValue3 != method)
+        {
+            return Unauthorized("Invalid token.");
+        }
+        else
+        {
+            try
+            {
+           
+                var dataupdate = _context.Cinemainterests.Find(times.idinterest);
+                if (dataupdate != null) {
+                  dataupdate.Idmovie = times.idmovie;
+                    _context.SaveChanges();
+                }
+
+                successApiResponse.Status = 200;
+                successApiResponse.Message = "OK";
+                successApiResponse.Data = dataupdate;
+            }
+            catch (Exception ex)
+            {
+                successApiResponse.Status = 500;
+                successApiResponse.Message = "Internal Server Error";
+                successApiResponse.Data = ex.Message;
+            }
+        }
+    }
+    return Ok(successApiResponse);
+}
+
 
 [HttpGet("getListInterest")]
 public async Task<IActionResult> getListInterest(int idcinema, int idroom,string date)

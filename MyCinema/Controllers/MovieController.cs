@@ -31,7 +31,71 @@ public class MovieController : ControllerBase
 
       
 
-       
+  [HttpGet("GetListMovieWithTimeReset")]
+public IActionResult GetListMovieWithTimeReset(int timereset)
+{
+    
+    var result = _context.Movies.Where(x => x.Timeall <= timereset).ToList();
+    var successApiResponse = new ApiResponse();
+
+    // Retrieve specific request headers
+    string token = Request.Headers["token"];
+    string filterHeaderValue2 = Request.Headers["ProjectId"];
+    string filterHeaderValue3 = Request.Headers["Method"];
+    string expectedToken = ValidHeader.Token;
+    string method = Convert.ToString(ValidHeader.MethodGet);
+    string Pojectid = Convert.ToString(ValidHeader.Project_id);
+
+    if (result == null || result.Count == 0) // Check if the result list is empty
+    {
+        var apiResponse = new ApiResponse
+        {
+            Status = 404,
+            Message = "Movies not found.",
+            Data = null
+        };
+
+        return NotFound(apiResponse);
+    }
+    else
+    {
+        if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(filterHeaderValue2) || string.IsNullOrEmpty(filterHeaderValue3))
+        {
+            // The "Authorize" header was not found in the request
+            return BadRequest("Authorize header not found in the request.");
+        }
+        else
+        {
+            if (token != expectedToken || filterHeaderValue2 != Pojectid || filterHeaderValue3 != method)
+            {
+                return Unauthorized("Invalid token."); // Return an error response if the tokens don't match
+            }
+            else
+            {
+                var moviesList = new List<MovieItem>();
+
+                foreach (var item in result)
+                {
+                    var movie = new MovieItem
+                    {
+                        MovieID = item.Idmovie,
+                        Namemovie = item.Namemovie,
+                        Poster = item.Poster,
+                        Timeall = item.Timeall
+                    };
+
+                    moviesList.Add(movie);
+                }
+
+                successApiResponse.Status = 200;
+                successApiResponse.Message = "OK";
+                successApiResponse.Data = moviesList;
+            }
+        }
+    }
+
+    return Ok(successApiResponse);
+}     
 
 
 
@@ -162,6 +226,90 @@ public IActionResult getDetailMovies(long Idmovie)
     }
 
     return Ok(successApiResponse);
+}
+// class createMovie
+public class NewMovie {
+    public long Idmovie { get; set; }
+
+    public string? Namemovie { get; set; }
+
+    public string? Author { get; set; }
+
+    public DateTime? Yearbirthday { get; set; }
+
+    public int? Idcategorymovie { get; set; }
+
+    public int? Idnation { get; set; }
+
+    public int? Timeall { get; set; }
+
+    public string? Describes { get; set; }
+
+    public string? Poster { get; set; }
+
+   
+
+  
+}
+
+[HttpPost("CreateMovieNew")]
+public IActionResult CreateMovieNew([FromBody] NewMovie newmovie)
+{
+    // khoi tao api response
+    var successApiResponse = new ApiResponse();
+    //header
+       string token = Request.Headers["token"];
+       string filterHeaderValue2 = Request.Headers["ProjectId"];
+       string filterHeaderValue3 = Request.Headers["Method"];
+       string expectedToken = ValidHeader.Token;
+       string method =Convert.ToString(ValidHeader.MethodPost);
+       string Pojectid = Convert.ToString(ValidHeader.Project_id);
+    //check header
+        if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(filterHeaderValue2) || string.IsNullOrEmpty(filterHeaderValue3))
+        {
+        // The "Authorize" header was not found in the request
+           return BadRequest("Authorize header not found in the request.");
+        }else {
+
+            if (token != expectedToken || filterHeaderValue2 != Pojectid || filterHeaderValue3 != method)
+          {
+            return Unauthorized("Invalid token."); // Return an error response if the tokens don't match
+          }else{
+            // if (date != null && Idmovie != null){
+                
+                  
+               try
+                 {
+                    Movie movienew = new Movie();
+                     movienew.Author = newmovie.Author;
+                     movienew.Namemovie = newmovie.Namemovie;
+                     movienew.Describes = newmovie.Describes;
+                     movienew.Poster = newmovie.Poster;
+                     movienew.Idcategorymovie = newmovie.Idcategorymovie;
+                    movienew.Idnation = newmovie.Idnation;
+                    movienew.Statusshow = 0;
+                    // movienew.Idvideo = 0;
+                    movienew.Timeall = newmovie.Timeall;
+                    movienew.Yearbirthday = newmovie.Yearbirthday;
+                    _context.Movies.Add(movienew);
+                    _context.SaveChanges();
+                      successApiResponse.Status = 200;
+                     successApiResponse.Message = "OK";
+                     successApiResponse.Data = movienew;
+                 }
+                 catch (IndexOutOfRangeException ex)
+                  {
+    
+                  }     
+            // }else {
+            //     return BadRequest("khong tim thay thong tin");
+            // }
+                 
+
+           }
+
+        }
+ return Ok(successApiResponse);
 }
 
 
