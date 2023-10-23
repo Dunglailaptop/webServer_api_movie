@@ -141,6 +141,10 @@
       "PackagePath": "staticwebassets/Uploads/Movie/94DAE4C2-2AD0-4142-91FC-BDB050EA6146.jpeg/94DAE4C2-2AD0-4142-91FC-BDB050EA6146.jpeg"
     },
     {
+      "Id": "/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/9781847E-2F24-4A44-AF81-CACE95874CEB.webp/9781847E-2F24-4A44-AF81-CACE95874CEB.webp",
+      "PackagePath": "staticwebassets/Uploads/Movie/9781847E-2F24-4A44-AF81-CACE95874CEB.webp/9781847E-2F24-4A44-AF81-CACE95874CEB.webp"
+    },
+    {
       "Id": "/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/9A30F276-D247-49F5-B78F-29509D5A4E1C.jpeg/9A30F276-D247-49F5-B78F-29509D5A4E1C.jpeg",
       "PackagePath": "staticwebassets/Uploads/Movie/9A30F276-D247-49F5-B78F-29509D5A4E1C.jpeg/9A30F276-D247-49F5-B78F-29509D5A4E1C.jpeg"
     },
@@ -207,6 +211,10 @@
     {
       "Id": "/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/F2C553E3-A0A5-4C6B-B5B0-170FF8C1F5A7.jpeg/F2C553E3-A0A5-4C6B-B5B0-170FF8C1F5A7.jpeg",
       "PackagePath": "staticwebassets/Uploads/Movie/F2C553E3-A0A5-4C6B-B5B0-170FF8C1F5A7.jpeg/F2C553E3-A0A5-4C6B-B5B0-170FF8C1F5A7.jpeg"
+    },
+    {
+      "Id": "/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/FF4B74AD-177E-493A-8678-19AF9D9A721E.webp/FF4B74AD-177E-493A-8678-19AF9D9A721E.webp",
+      "PackagePath": "staticwebassets/Uploads/Movie/FF4B74AD-177E-493A-8678-19AF9D9A721E.webp/FF4B74AD-177E-493A-8678-19AF9D9A721E.webp"
     },
     {
       "Id": "/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/Logo-test.png/Logo-test.png",

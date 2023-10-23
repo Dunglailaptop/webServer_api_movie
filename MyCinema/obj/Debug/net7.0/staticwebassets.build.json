@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "LBROjI6+5yowX6mgEMDa6lIbSrv/WJR8fdz2uxL6EyI=",
+  "Hash": "Aj38im9vQrDyZ7XjYlUhAP60stxHhTjT+oqKSTDU+GA=",
   "Source": "MyCinema",
   "BasePath": "_content/MyCinema",
   "Mode": "Default",
@@ -663,6 +663,23 @@
       "OriginalItemSpec": "wwwroot/Uploads/Movie/94DAE4C2-2AD0-4142-91FC-BDB050EA6146.jpeg/94DAE4C2-2AD0-4142-91FC-BDB050EA6146.jpeg"
     },
     {
+      "Identity": "/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/9781847E-2F24-4A44-AF81-CACE95874CEB.webp/9781847E-2F24-4A44-AF81-CACE95874CEB.webp",
+      "SourceId": "MyCinema",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/wwwroot/",
+      "BasePath": "_content/MyCinema",
+      "RelativePath": "Uploads/Movie/9781847E-2F24-4A44-AF81-CACE95874CEB.webp/9781847E-2F24-4A44-AF81-CACE95874CEB.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Uploads/Movie/9781847E-2F24-4A44-AF81-CACE95874CEB.webp/9781847E-2F24-4A44-AF81-CACE95874CEB.webp"
+    },
+    {
       "Identity": "/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/9A30F276-D247-49F5-B78F-29509D5A4E1C.jpeg/9A30F276-D247-49F5-B78F-29509D5A4E1C.jpeg",
       "SourceId": "MyCinema",
       "SourceType": "Discovered",
@@ -984,6 +1001,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Uploads/Movie/F2C553E3-A0A5-4C6B-B5B0-170FF8C1F5A7.jpeg/F2C553E3-A0A5-4C6B-B5B0-170FF8C1F5A7.jpeg"
+    },
+    {
+      "Identity": "/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/FF4B74AD-177E-493A-8678-19AF9D9A721E.webp/FF4B74AD-177E-493A-8678-19AF9D9A721E.webp",
+      "SourceId": "MyCinema",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/wwwroot/",
+      "BasePath": "_content/MyCinema",
+      "RelativePath": "Uploads/Movie/FF4B74AD-177E-493A-8678-19AF9D9A721E.webp/FF4B74AD-177E-493A-8678-19AF9D9A721E.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Uploads/Movie/FF4B74AD-177E-493A-8678-19AF9D9A721E.webp/FF4B74AD-177E-493A-8678-19AF9D9A721E.webp"
     },
     {
       "Identity": "/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/wwwroot/Uploads/Movie/harrypotter.jpeg/harrypotter.jpeg",

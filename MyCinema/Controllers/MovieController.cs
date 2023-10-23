@@ -100,10 +100,31 @@ public IActionResult GetListMovieWithTimeReset(int timereset)
 
 
 [HttpGet("ListMovie")]
-public IActionResult getListMovies(int offset_value, int page_size,int Status)
+public IActionResult getListMovies(int offset_value, int page_size,int Status,int? Idcategory,DateTime? dateFrom,DateTime? dateTo)
 {
-    string sql = "CALL cinema.getListMovieNowShow(@p0, @p1, @p2)";
-    var result = _context.Movies.FromSqlRaw(sql, offset_value, page_size, Status).ToList();
+    // string sql = "CALL cinema.getListMovieNowShow(@p0, @p1, @p2)";
+    var result = new List<Movie>();
+    if (Status == 3) {
+     if (Idcategory > 0) {
+       result = _context.Movies.Where(x=>x.Statusshow >= 1 && x.Idcategorymovie == Idcategory).ToList();
+     } else if (dateFrom.ToString() != "" && dateTo.ToString() != "") {
+        result = _context.Movies.Where(x=>x.Statusshow >= 1 && x.Yearbirthday >= dateFrom && x.Yearbirthday <= dateTo).ToList();
+     } else {
+      result = _context.Movies.Where(x=>x.Statusshow >= 1).ToList();
+     }
+       
+      
+    }else {
+        if (Idcategory > 0){
+           result = _context.Movies.Where(x=>x.Statusshow == Status && x.Idcategorymovie == Idcategory).ToList();
+        } else if (dateFrom.ToString() != "" && dateTo.ToString() != "") {
+        result = _context.Movies.Where(x=>x.Statusshow == Status && x.Yearbirthday >= dateFrom && x.Yearbirthday <= dateTo).ToList();
+         }else {
+            result = _context.Movies.Where(x=>x.Statusshow == Status).ToList();
+        }
+      
+    }
+
     var successApiResponse = new ApiResponse();
 
     // Retrieve specific request headers
@@ -114,19 +135,7 @@ public IActionResult getListMovies(int offset_value, int page_size,int Status)
     string method = Convert.ToString(ValidHeader.MethodGet);
     string Pojectid = Convert.ToString(ValidHeader.Project_id);
 
-    if (result == null || result.Count == 0) // Check if the result list is empty
-    {
-        var apiResponse = new ApiResponse
-        {
-            Status = 404,
-            Message = "Movies not found.",
-            Data = null
-        };
-
-        return NotFound(apiResponse);
-    }
-    else
-    {
+   
         if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(filterHeaderValue2) || string.IsNullOrEmpty(filterHeaderValue3))
         {
             // The "Authorize" header was not found in the request
@@ -144,12 +153,16 @@ public IActionResult getListMovies(int offset_value, int page_size,int Status)
 
                 foreach (var item in result)
                 {
+                    var datacategoryMovie = _context.CategoryMovies.Where(x=>x.Idcategorymovie == item.Idcategorymovie).SingleOrDefault();
                     var movie = new MovieItem
                     {
                         MovieID = item.Idmovie,
                         Namemovie = item.Namemovie,
                         Poster = item.Poster,
-                        Timeall = item.Timeall
+                        Timeall = item.Timeall,
+                        Statusshow = item.Statusshow,
+                        Yearbirthday = item.Yearbirthday,
+                        namecategorymovie = datacategoryMovie.Namecategorymovie
                     };
 
                     moviesList.Add(movie);
@@ -160,7 +173,7 @@ public IActionResult getListMovies(int offset_value, int page_size,int Status)
                 successApiResponse.Data = moviesList;
             }
         }
-    }
+    
 
     return Ok(successApiResponse);
 }
@@ -169,7 +182,7 @@ public IActionResult getListMovies(int offset_value, int page_size,int Status)
 [HttpGet("DetailMovie")]
 public IActionResult getDetailMovies(long Idmovie)
 {
-    string sql = "CALL cinema.getDetailMovie(@p0)";
+     var sql = "select * from cinema.Movie where Idmovie = '"+ Idmovie +"' ";
     var result = _context.Movies.FromSqlRaw(sql, Idmovie).AsEnumerable().FirstOrDefault();
     var successApiResponse = new ApiResponse();
 
@@ -207,6 +220,9 @@ public IActionResult getDetailMovies(long Idmovie)
             }
             else
             {
+                 var datacategoryMovie = _context.CategoryMovies.Where(x=>x.Idcategorymovie == result.Idcategorymovie).SingleOrDefault();
+                 var dataNation = _context.Nations.Where(x=>x.Idnation == result.Idnation).SingleOrDefault();
+                var getvideofile = _context.Videousers.Where(x => x.Idvideo == result.Idvideo).FirstOrDefault();
                 var moviedetail = new MovieItem();
                 moviedetail.MovieID = result.Idmovie;
                 moviedetail.Namemovie = result.Namemovie;
@@ -215,7 +231,10 @@ public IActionResult getDetailMovies(long Idmovie)
                 moviedetail.Poster = result.Poster;
                 moviedetail.Timeall = result.Timeall;
                 moviedetail.Yearbirthday = result.Yearbirthday;
-                var getvideofile = _context.Videousers.Where(x => x.Idvideo == result.Idvideo).FirstOrDefault();
+                moviedetail.Idcategory = result.Idcategorymovie;
+                moviedetail.Idnation = result.Idnation;
+               moviedetail.namecategorymovie = datacategoryMovie.Namecategorymovie;
+               moviedetail.namenation = dataNation.Namenation;
                 moviedetail.Videofile = getvideofile.Videofile;
         
                 successApiResponse.Status = 200;
@@ -281,21 +300,22 @@ public IActionResult CreateMovieNew([FromBody] NewMovie newmovie)
                try
                  {
                     Movie movienew = new Movie();
-                     movienew.Author = newmovie.Author;
-                     movienew.Namemovie = newmovie.Namemovie;
-                     movienew.Describes = newmovie.Describes;
-                     movienew.Poster = newmovie.Poster;
-                     movienew.Idcategorymovie = newmovie.Idcategorymovie;
+                    movienew.Author = newmovie.Author;
+                    movienew.Namemovie = newmovie.Namemovie;
+                    movienew.Describes = newmovie.Describes;
+                    movienew.Poster = newmovie.Poster;
+                    movienew.Idcategorymovie = newmovie.Idcategorymovie;
                     movienew.Idnation = newmovie.Idnation;
+                    movienew.Idvideo = 1;
                     movienew.Statusshow = 0;
                     // movienew.Idvideo = 0;
                     movienew.Timeall = newmovie.Timeall;
                     movienew.Yearbirthday = newmovie.Yearbirthday;
                     _context.Movies.Add(movienew);
                     _context.SaveChanges();
-                      successApiResponse.Status = 200;
-                     successApiResponse.Message = "OK";
-                     successApiResponse.Data = movienew;
+                    successApiResponse.Status = 200;
+                    successApiResponse.Message = "OK";
+                    successApiResponse.Data = movienew;
                  }
                  catch (IndexOutOfRangeException ex)
                   {
@@ -311,6 +331,127 @@ public IActionResult CreateMovieNew([FromBody] NewMovie newmovie)
         }
  return Ok(successApiResponse);
 }
+
+public class statsusUpdate {
+
+  public long? Idmovie {get;set;}
+  public int status {get;set;}
+
+}
+
+[HttpPost("UpdateSatusMovie")]
+public IActionResult UpdateSatusMovie([FromBody] statsusUpdate updatestatus)
+{
+    // khoi tao api response
+    var successApiResponse = new ApiResponse();
+    //header
+       string token = Request.Headers["token"];
+       string filterHeaderValue2 = Request.Headers["ProjectId"];
+       string filterHeaderValue3 = Request.Headers["Method"];
+       string expectedToken = ValidHeader.Token;
+       string method =Convert.ToString(ValidHeader.MethodPost);
+       string Pojectid = Convert.ToString(ValidHeader.Project_id);
+    //check header
+        if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(filterHeaderValue2) || string.IsNullOrEmpty(filterHeaderValue3))
+        {
+        // The "Authorize" header was not found in the request
+           return BadRequest("Authorize header not found in the request.");
+        }else {
+
+            if (token != expectedToken || filterHeaderValue2 != Pojectid || filterHeaderValue3 != method)
+          {
+            return Unauthorized("Invalid token."); // Return an error response if the tokens don't match
+          }else{
+            // if (date != null && Idmovie != null){
+                
+                  
+               try
+                 {
+                    var movieneedUp = _context.Movies.Find(updatestatus.Idmovie);
+                    movieneedUp.Statusshow = updatestatus.status;
+                    _context.Movies.Update(movieneedUp);
+                    _context.SaveChanges();
+                    
+                    successApiResponse.Status = 200;
+                    successApiResponse.Message = "OK";
+                    successApiResponse.Data = movieneedUp;
+                 }
+                 catch (IndexOutOfRangeException ex)
+                  {
+    
+                  }     
+            // }else {
+            //     return BadRequest("khong tim thay thong tin");
+            // }
+                 
+
+           }
+
+        }
+ return Ok(successApiResponse);
+}
+
+
+
+[HttpPost("UpdateMovies")]
+public IActionResult UpdateMovies([FromBody] NewMovie newmovie)
+{
+    // khoi tao api response
+    var successApiResponse = new ApiResponse();
+    //header
+       string token = Request.Headers["token"];
+       string filterHeaderValue2 = Request.Headers["ProjectId"];
+       string filterHeaderValue3 = Request.Headers["Method"];
+       string expectedToken = ValidHeader.Token;
+       string method =Convert.ToString(ValidHeader.MethodPost);
+       string Pojectid = Convert.ToString(ValidHeader.Project_id);
+    //check header
+        if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(filterHeaderValue2) || string.IsNullOrEmpty(filterHeaderValue3))
+        {
+        // The "Authorize" header was not found in the request
+           return BadRequest("Authorize header not found in the request.");
+        }else {
+
+            if (token != expectedToken || filterHeaderValue2 != Pojectid || filterHeaderValue3 != method)
+          {
+            return Unauthorized("Invalid token."); // Return an error response if the tokens don't match
+          }else{
+            // if (date != null && Idmovie != null){
+                
+                  
+               try
+                 {
+                   var dataUpdate = _context.Movies.Find(newmovie.Idmovie);
+                    dataUpdate.Idnation = newmovie.Idnation;
+                    dataUpdate.Idcategorymovie = newmovie.Idcategorymovie;
+                    dataUpdate.Author = newmovie.Author;
+                    dataUpdate.Namemovie = newmovie.Namemovie;
+                    dataUpdate.Describes = newmovie.Describes;
+                    dataUpdate.Poster = newmovie.Poster;
+                    dataUpdate.Yearbirthday = newmovie.Yearbirthday;
+                    dataUpdate.Timeall = newmovie.Timeall;
+                    _context.Movies.Update(dataUpdate);
+                   
+                   _context.SaveChanges();
+                      successApiResponse.Status = 200;
+                     successApiResponse.Message = "OK";
+                     successApiResponse.Data = dataUpdate;
+                 }
+                 catch (IndexOutOfRangeException ex)
+                  {
+    
+                  }     
+            // }else {
+            //     return BadRequest("khong tim thay thong tin");
+            // }
+                 
+
+           }
+
+        }
+ return Ok(successApiResponse);
+}
+
 
 
 // [HttpGet("ListMovie")]
@@ -451,12 +592,16 @@ public class MovieItem
     public int? Timeall { get; set; }
     public string Describes { get; set; }
     public string Poster { get; set; }
-    public int Statusshow { get; set; }
+    public int? Statusshow { get; set; }
     public string Videofile {get; set;}
 
     public long? Idvideo {get; set;}
 
     public int? Idcategory {get; set;}
+
+    public string namecategorymovie {get;set;}
+
+    public string namenation {get;set;}
 
     public int? Idnation {get;set;}
 }
