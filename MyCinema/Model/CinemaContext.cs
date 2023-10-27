@@ -21,6 +21,7 @@ public partial class CinemaContext : DbContext
     public DbSet<CINEMA> CINEMAS { get; set; }
       public DbSet<USERS> USERS { get; set; }
      public DbSet<CHAIR> CHAIRS { get; set; }
+       public DbSet<CHAIRDETAILBILL> CHAIRSDETAIL { get; set; }
     public DbSet<INTERESTCINEMA> INTERESTCINEMA { get; set; }
     public DbSet<LISTCINEMA> LISTCINEMA {get;set;}
 
@@ -489,6 +490,9 @@ public partial class CinemaContext : DbContext
         .HasNoKey();
         OnModelCreatingPartial(modelBuilder);
                modelBuilder.Entity<CHAIR>()
+        .HasNoKey();
+         OnModelCreatingPartial(modelBuilder);
+               modelBuilder.Entity<CHAIRDETAILBILL>()
         .HasNoKey();
         OnModelCreatingPartial(modelBuilder);
           modelBuilder.Entity<USERS>()

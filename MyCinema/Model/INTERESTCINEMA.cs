@@ -36,6 +36,19 @@ public partial class CHAIR
    
     
 }
+public partial class CHAIRDETAILBILL
+{
+    public int Idchair { get; set; }
+    
+    public int NumberChair { get; set; }
+
+     public string RowChar { get; set; }
+
+    //  public long? bill {get;set;} 
+     public int Idcategorychair {get;set;}
+   
+    
+}
 
 public partial class USERS
 {
