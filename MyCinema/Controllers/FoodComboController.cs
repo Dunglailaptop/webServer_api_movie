@@ -187,7 +187,7 @@ public IActionResult CreateFoodNew([FromBody] Foodnew combofood )
                     Pricefood = combofood.Pricefood,
                     Picture = combofood.Picture,
                     Idcategoryfood = combofood.Idcategoryfood,
-                    datecreate =  combofood.datecreate
+                    datecreate =  DateTime.Now
                    };
 
 
@@ -198,7 +198,7 @@ public IActionResult CreateFoodNew([FromBody] Foodnew combofood )
                  
                       successApiResponse.Status = 200;
                      successApiResponse.Message = "OK";
-                     successApiResponse.Data = fd.Idfood;
+                     successApiResponse.Data = fd;
                  }
                  catch (IndexOutOfRangeException ex)
                   {
@@ -530,6 +530,123 @@ public IActionResult UpdateInfoCombofood([FromBody] FoodComboNew FOODS)
 
 
 
+[HttpGet("getDetailFood")]
+public IActionResult getDetailFood(int idfood)
+{
+    // khoi tao api response
+    var successApiResponse = new ApiResponse();
+    //header
+       string token = Request.Headers["token"];
+       string filterHeaderValue2 = Request.Headers["ProjectId"];
+       string filterHeaderValue3 = Request.Headers["Method"];
+       string expectedToken = ValidHeader.Token;
+       string method =Convert.ToString(ValidHeader.MethodGet);
+       string Pojectid = Convert.ToString(ValidHeader.Project_id);
+    //check header
+        if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(filterHeaderValue2) || string.IsNullOrEmpty(filterHeaderValue3))
+        {
+        // The "Authorize" header was not found in the request
+           return BadRequest("Authorize header not found in the request.");
+        }else {
+
+            if (token != expectedToken || filterHeaderValue2 != Pojectid || filterHeaderValue3 != method)
+          {
+            return Unauthorized("Invalid token."); // Return an error response if the tokens don't match
+          }else{
+            // if (date != null && Idmovie != null){
+                
+                  
+               try
+                 {
+              
+                   var datafood = _context.Foods.Where(x=>x.Idfood == idfood).SingleOrDefault();
+                   var datacategoryfood = _context.Categoryfoods.Where(x=>x.Idcategoryfood == datafood.Idcategoryfood).SingleOrDefault();
+                   Foodnew foods = new Foodnew();
+                   foods.Idfood = datafood.Idfood;
+                   foods.Namefood = datafood.Namefood;
+                   foods.Pricefood = datafood.Pricefood;
+                   foods.Picture = datafood.Picture;
+                   foods.Idcategoryfood = datafood.Idcategoryfood;
+                   foods.Quantityfood = datafood.Quantityfood;
+                    foods.namecategoryfood = datacategoryfood.Namecategoryfood;
+                      successApiResponse.Status = 200;
+                     successApiResponse.Message = "OK";
+                     successApiResponse.Data = foods;
+                 }
+                 catch (IndexOutOfRangeException ex)
+                  {
+    
+                  }     
+            // }else {
+            //     return BadRequest("khong tim thay thong tin");
+            // }
+                 
+
+           }
+
+        }
+ return Ok(successApiResponse);
+}
+
+[HttpPost("UpdateFood")]
+public IActionResult UpdateFood([FromBody] Foodnew food)
+{
+    // khoi tao api response
+    var successApiResponse = new ApiResponse();
+    //header
+       string token = Request.Headers["token"];
+       string filterHeaderValue2 = Request.Headers["ProjectId"];
+       string filterHeaderValue3 = Request.Headers["Method"];
+       string expectedToken = ValidHeader.Token;
+       string method =Convert.ToString(ValidHeader.MethodPost);
+       string Pojectid = Convert.ToString(ValidHeader.Project_id);
+    //check header
+        if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(filterHeaderValue2) || string.IsNullOrEmpty(filterHeaderValue3))
+        {
+        // The "Authorize" header was not found in the request
+           return BadRequest("Authorize header not found in the request.");
+        }else {
+
+            if (token != expectedToken || filterHeaderValue2 != Pojectid || filterHeaderValue3 != method)
+          {
+            return Unauthorized("Invalid token."); // Return an error response if the tokens don't match
+          }else{
+            // if (date != null && Idmovie != null){
+                
+                  
+               try
+                 {
+              
+                   var foods = _context.Foods.Find(food.Idfood);
+                 
+                   foods.Namefood = food.Namefood;
+                   foods.Pricefood = food.Pricefood;
+                   foods.Picture = food.Picture;
+                   foods.Idcategoryfood = food.Idcategoryfood;
+                   foods.Quantityfood = food.Quantityfood;
+                  _context.Foods.Update(foods);
+                  _context.SaveChanges();
+                      successApiResponse.Status = 200;
+                     successApiResponse.Message = "OK";
+                     successApiResponse.Data = foods;
+                 }
+                 catch (IndexOutOfRangeException ex)
+                  {
+    
+                  }     
+            // }else {
+            //     return BadRequest("khong tim thay thong tin");
+            // }
+                 
+
+           }
+
+        }
+ return Ok(successApiResponse);
+}
+
+
+
 public class foodCombowithfood {
      public int idcombo {get;set;}
 
@@ -577,7 +694,7 @@ public partial class Foodnew
     public int? Idcategoryfood { get; set; }
 
     public DateTime datecreate {get;set;}
-
+public string namecategoryfood {get;set;}
   
 }
 

@@ -16,6 +16,7 @@ public partial class Voucher
     public string? Note { get; set; }
 
     public string? Poster { get; set; }
+    public int? statuss {get;set;}
 
     public virtual ICollection<Bill> Bills { get; set; } = new List<Bill>();
 }
