@@ -75,3 +75,62 @@ public partial class CINEMA
 {
     public int Idcinema {get;set;}
 }
+
+public partial class ReportTicket {
+// public DateTime? DateHour {get;set;}
+
+  public DateTime Datebill {get;set;}
+
+  public int Total {get;set;}
+
+  public int pricefood {get;set;} 
+  public int statusbill {get;set;}
+    
+}
+
+
+public partial class ReportFoodCombo {
+// public DateTime? DateHour {get;set;}
+
+  public DateTime datetimes {get;set;}
+
+  public int totals {get;set;}
+
+public int statusbillfoodcombo {get;set;}
+    
+}
+//LAY HET ALL YEAR
+public partial class ReportTicketALL {
+// public DateTime? DateHour {get;set;}
+
+  public int Datebill {get;set;}
+
+  public int Total {get;set;}
+
+  public int pricefood {get;set;} 
+  public int statusbill {get;set;}
+    
+}
+
+
+public partial class ReportFoodComboALL {
+// public DateTime? DateHour {get;set;}
+
+  public int datetimes {get;set;}
+
+  public int totals {get;set;}
+
+public int statusbillfoodcombo {get;set;}
+    
+}
+
+public partial class ReportMovie {
+ public int totals {get;set;}
+
+ public long? Idmovie {get;set;}
+
+ public string poster {get;set;}
+
+ public string Datebill {get;set;}
+
+}

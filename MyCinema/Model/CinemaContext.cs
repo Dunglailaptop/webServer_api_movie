@@ -15,6 +15,12 @@ public partial class CinemaContext : DbContext
     {
     }
     //INNNER JOIN START
+      public DbSet<ReportFoodCombo> ReportFoodCombos {get;set;}
+    public DbSet<ReportTicket> ReportTickets {get;set;}
+
+      public DbSet<ReportFoodComboALL> ReportFoodComboALLs {get;set;}
+    public DbSet<ReportTicketALL> ReportTicketALLs {get;set;}
+    public DbSet<ReportMovie> ReportMovies {get;set;}
      public DbSet<FoodComboWithBills>  FoodComboWithBills { get; set; }
      public DbSet<FoodComboBill> FoodComboBill { get; set; }
      public DbSet<FoodCombo> Foodcombo { get; set; }
@@ -501,6 +507,21 @@ public partial class CinemaContext : DbContext
          OnModelCreatingPartial(modelBuilder);
           modelBuilder.Entity<CINEMA>()
         .HasNoKey();
+           OnModelCreatingPartial(modelBuilder);
+          modelBuilder.Entity<ReportTicket>()
+        .HasNoKey();
+          OnModelCreatingPartial(modelBuilder);
+          modelBuilder.Entity<ReportFoodCombo>()
+        .HasNoKey();
+              OnModelCreatingPartial(modelBuilder);
+          modelBuilder.Entity<ReportTicketALL>()
+        .HasNoKey();
+          OnModelCreatingPartial(modelBuilder);
+          modelBuilder.Entity<ReportFoodComboALL>()
+        .HasNoKey();
+          OnModelCreatingPartial(modelBuilder);
+          modelBuilder.Entity<ReportMovie>()
+        .HasNoKey();
             modelBuilder.Entity<FoodCombo>()
             .HasKey(fc => fc.idcombo); // Assuming Id is the primary key property
            modelBuilder.Entity<FoodComboBill>()
@@ -510,7 +531,8 @@ public partial class CinemaContext : DbContext
                modelBuilder.Entity<FoodCombillPayment>()
             .HasKey(fc => fc.id); 
                modelBuilder.Entity<ListFoodCombo>()
-            .HasKey(fc => fc.id); 
+            .HasKey(fc => fc.id);
+
         //INNER JOIN END
     }
     //   protected override void OnModelCreating(ModelBuilder modelBuilder)
