@@ -131,9 +131,9 @@ public int stt {get;set;}
 
  public long? Idmovie {get;set;}
 
- public string poster {get;set;}
+//  public string poster {get;set;}
 
- public string Datebill {get;set;}
+//  public string Datebill {get;set;}
 
 }
 public partial class ReportFood {

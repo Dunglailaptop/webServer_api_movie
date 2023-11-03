@@ -1023,6 +1023,7 @@ public IActionResult ReportMovie(int report_type)
                   
                try
                  {
+                    
                     if (report_type == 1) //lay theo thoi gian ngay hien tai
                      {
                         var date = "2023-10-06";
@@ -1031,8 +1032,9 @@ public IActionResult ReportMovie(int report_type)
                          List<ReportMovieshow> reports = new List<ReportMovieshow>();
                          var sql = "";
                         var sqltest = "SELECT ROW_NUMBER() OVER (ORDER BY DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')) as stt,bill.Idmovie, m.poster, IFNULL(SUM(bill.Totalamount), 0) as totals, DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H') as Datebill FROM cinema.Bill as bill INNER JOIN cinema.movie as m ON m.Idmovie = bill.Idmovie WHERE  bill.Datebill >= '"+datenow.ToString("yyyy-MM-dd HH:mm:ss")+"' AND bill.Datebill <= '"+dateend.ToString("yyyy-MM-dd HH:mm:ss")+"' GROUP BY DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H'), bill.Idmovie, m.poster ORDER BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')";
-
+                         
                         var dataget = _context.ReportMovies.FromSqlRaw(sqltest).AsEnumerable().ToList();
+                         
                         foreach (var item in dataget) {
                              var reportitemshow = new ReportMovieshow();
                              var datamovie = _context.Movies.Where(x=>x.Idmovie == item.Idmovie).FirstOrDefault();
@@ -1040,18 +1042,22 @@ public IActionResult ReportMovie(int report_type)
                               reportitemshow.stt = item.stt;
                               reportitemshow.totals = item.totals;
                               reportitemshow.Idmovie = item.Idmovie;
-                              reportitemshow.poster = item.poster;
-                              reportitemshow.Datebill = item.Datebill;
+                              reportitemshow.poster = datamovie.Poster;
+                            //   reportitemshow.Datebill = item.Datebill;
                               reports.Add(reportitemshow);
                         }
-                       
+                        var ReportMovieAlls = new ReportMovieAll();
+                        var dataTotal = _context.Bills.Sum(e=>e.Totalamount);
+                        ReportMovieAlls.totalall = dataTotal;
+                        ReportMovieAlls.reportMovieshows.AddRange(reports);
+                   
                         //   foreach (var iitem in dataget ){
 
                         //   }
 
                         successApiResponse.Status = 200;
                         successApiResponse.Message = "OK";
-                        successApiResponse.Data = reports;
+                        successApiResponse.Data = ReportMovieAlls;
                     } else if (report_type == 9) // lay theo thoi gian ngay hom qua
                      {
                              var date = "2023-10-06";
@@ -1059,7 +1065,7 @@ public IActionResult ReportMovie(int report_type)
                         var dateend = DateTime.Now.Date.AddDays(-1).AddHours(23).AddMinutes(59).AddSeconds(59); 
                          List<ReportMovieshow> reports = new List<ReportMovieshow>();
 
-                        var sqltest = "SELECT ROW_NUMBER() OVER (ORDER BY DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')) as stt,DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H') as Datebill,bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) as totals FROM cinema.Bill  as bill INNER JOIN cinema.movie as m on m.Idmovie = bill.Idmovie WHERE bill.Datebill >= '"+datenow.ToString("yyyy-MM-dd HH:mm:ss")+"' AND bill.Datebill <= '"+dateend.ToString("yyyy-MM-dd HH:mm:ss")+"' GROUP BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H'),bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) ORDER BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')";
+                        var sqltest = "SELECT ROW_NUMBER() OVER (ORDER BY DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')) as stt,DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H') as Datebill,bill.Idmovie,m.poster,IFNULL(SUM(bill.Totalamount), 0) as totals FROM cinema.Bill  as bill INNER JOIN cinema.movie as m on m.Idmovie = bill.Idmovie WHERE bill.Datebill >= '"+datenow.ToString("yyyy-MM-dd HH:mm:ss")+"' AND bill.Datebill <= '"+dateend.ToString("yyyy-MM-dd HH:mm:ss")+"' GROUP BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H'),bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) ORDER BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')";
 
                         var dataget = _context.ReportMovies.FromSqlRaw(sqltest).AsEnumerable().ToList();
                         foreach (var item in dataget) {
@@ -1068,18 +1074,21 @@ public IActionResult ReportMovie(int report_type)
                               reportitemshow.namemovie = datamovie.Namemovie;
                               reportitemshow.totals = item.totals;
                               reportitemshow.Idmovie = item.Idmovie;
-                              reportitemshow.poster = item.poster;
-                               reportitemshow.Datebill = item.Datebill;
+                              reportitemshow.poster = datamovie.Poster;
+                            //    reportitemshow.Datebill = item.Datebill;
                               reports.Add(reportitemshow);
                         }
-                       
+                          var ReportMovieAlls = new ReportMovieAll();
+                        var dataTotal = _context.Bills.Sum(e=>e.Totalamount);
+                        ReportMovieAlls.totalall = dataTotal;
+                        ReportMovieAlls.reportMovieshows.AddRange(reports);
                         //   foreach (var iitem in dataget ){
 
                         //   }
 
                         successApiResponse.Status = 200;
                         successApiResponse.Message = "OK";
-                        successApiResponse.Data = reports;
+                       successApiResponse.Data = ReportMovieAlls;
                     } else if (report_type == 2) // lay theo tuan
                     {
                                 DateTime ngayHienTai = DateTime.Now;
@@ -1089,7 +1098,7 @@ public IActionResult ReportMovie(int report_type)
                                     List<ReportMovieshow> reports = new List<ReportMovieshow>();
                                
                                     
-                                        var sqltest = "SELECT ROW_NUMBER() OVER (ORDER BY DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')) as stt,DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H') as Datebill,bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) as totals FROM cinema.Bill  as bill INNER JOIN cinema.movie as m on m.Idmovie = bill.Idmovie WHERE bill.Datebill >= '"+ngayDauTien.ToString("yyyy-MM-dd HH:mm:ss")+"' AND bill.Datebill <= '"+ngayCuoiCung.ToString("yyyy-MM-dd HH:mm:ss")+"' GROUP BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H'),bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) ORDER BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')";
+                                        var sqltest = "SELECT ROW_NUMBER() OVER (ORDER BY DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')) as stt,DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H') as Datebill,bill.Idmovie,m.poster,IFNULL(SUM(bill.Totalamount), 0) as totals FROM cinema.Bill  as bill INNER JOIN cinema.movie as m on m.Idmovie = bill.Idmovie WHERE bill.Datebill >= '"+ngayDauTien.ToString("yyyy-MM-dd HH:mm:ss")+"' AND bill.Datebill <= '"+ngayCuoiCung.ToString("yyyy-MM-dd HH:mm:ss")+"' GROUP BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H'),bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) ORDER BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')";
                                         var dataget = _context.ReportMovies.FromSqlRaw(sqltest).AsEnumerable().ToList();
 
                                         foreach (var itemS in dataget) 
@@ -1107,18 +1116,21 @@ public IActionResult ReportMovie(int report_type)
                                                     reportitemshow.namemovie = datamovie.Namemovie;
                                                     reportitemshow.totals = itemS.totals;
                                                     reportitemshow.Idmovie = itemS.Idmovie;
-                                                    reportitemshow.poster = itemS.poster;
-                                                    reportitemshow.Datebill = itemS.Datebill;
- reportitemshow.stt = itemS.stt;
+                                                    reportitemshow.poster = datamovie.Poster;
+                                                    // reportitemshow.Datebill = itemS.Datebill;
+                                                    reportitemshow.stt = itemS.stt;
                                                     reports.Add(reportitemshow);
                                                 }
                                            }
                                         
-                                    
+                                    var ReportMovieAlls = new ReportMovieAll();
+                                    var dataTotal = _context.Bills.Sum(e=>e.Totalamount);
+                                    ReportMovieAlls.totalall = dataTotal;
+                                    ReportMovieAlls.reportMovieshows.AddRange(reports);
 
                                 successApiResponse.Status = 200;
                                 successApiResponse.Message = "OK";
-                                successApiResponse.Data = reports;
+                                 successApiResponse.Data = ReportMovieAlls;
                     } else if (report_type == 3) // lay theo thang
                    {
                                 DateTime currentDate = DateTime.Now.Date;
@@ -1128,13 +1140,13 @@ public IActionResult ReportMovie(int report_type)
                                 List<ReportMovieshow> reports = new List<ReportMovieshow>();
 
                                   
-                                        var sqltest = "SELECT ROW_NUMBER() OVER (ORDER BY DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')) as stt,DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H') as Datebill,bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) as totals FROM cinema.Bill  as bill INNER JOIN cinema.movie as m on m.Idmovie = bill.Idmovie WHERE bill.Datebill >= '"+firstDayOfMonth.ToString("yyyy-MM-dd HH:mm:ss")+"' AND bill.Datebill <= '"+lastDayOfMonth.ToString("yyyy-MM-dd HH:mm:ss")+"' GROUP BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H'),bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) ORDER BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')";
+                                        var sqltest = "SELECT ROW_NUMBER() OVER (ORDER BY DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')) as stt,DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H') as Datebill,bill.Idmovie,m.poster,IFNULL(SUM(bill.Totalamount), 0) as totals FROM cinema.Bill  as bill INNER JOIN cinema.movie as m on m.Idmovie = bill.Idmovie WHERE bill.Datebill >= '"+firstDayOfMonth.ToString("yyyy-MM-dd HH:mm:ss")+"' AND bill.Datebill <= '"+lastDayOfMonth.ToString("yyyy-MM-dd HH:mm:ss")+"' GROUP BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H'),bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) ORDER BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')";
                                         var dataget = _context.ReportMovies.FromSqlRaw(sqltest).AsEnumerable().ToList();
 
                                         foreach (var itemS in dataget) 
                                         {
                                          
-                                            var datetimebill = itemS.Datebill.Replace("-","");
+                                            // var datetimebill = itemS.Datebill.Replace("-","");
 
                                           
                                                 var reportitemshow = new ReportMovieshow();
@@ -1146,18 +1158,21 @@ public IActionResult ReportMovie(int report_type)
                                                     reportitemshow.namemovie = datamovie.Namemovie;
                                                     reportitemshow.totals = itemS.totals;
                                                     reportitemshow.Idmovie = itemS.Idmovie;
-                                                    reportitemshow.poster = itemS.poster;
-                                                    reportitemshow.Datebill = itemS.Datebill;
- reportitemshow.stt = itemS.stt;
+                                                    reportitemshow.poster = datamovie.Poster;
+                                                    // reportitemshow.Datebill = itemS.Datebill;
+                                                    reportitemshow.stt = itemS.stt;
                                                     reports.Add(reportitemshow);
                                                 }
                                             
                                         }
-                                    
+                                    var ReportMovieAlls = new ReportMovieAll();
+                                    var dataTotal = _context.Bills.Sum(e=>e.Totalamount);
+                                    ReportMovieAlls.totalall = dataTotal;
+                                    ReportMovieAlls.reportMovieshows.AddRange(reports);
 
                                 successApiResponse.Status = 200;
                                 successApiResponse.Message = "OK";
-                                successApiResponse.Data = reports;
+                                successApiResponse.Data = ReportMovieAlls;
                    } else if (report_type == 4) // lay theo 3 thang gan nhat
                     {
                                 DateTime ngayHienTai = DateTime.Now;
@@ -1168,13 +1183,13 @@ public IActionResult ReportMovie(int report_type)
                                 List<ReportMovieshow> reports = new List<ReportMovieshow>();
 
                                     
-                                        var sqltest = "SELECT ROW_NUMBER() OVER (ORDER BY DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')) as stt,DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H') as Datebill,bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) as totals FROM cinema.Bill  as bill INNER JOIN cinema.movie as m on m.Idmovie = bill.Idmovie WHERE bill.Datebill >= '"+ngayDauThang1.ToString("yyyy-MM-dd HH:mm:ss")+"' AND bill.Datebill <= '"+ngayCuoiThang3.ToString("yyyy-MM-dd HH:mm:ss")+"' GROUP BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H'),bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) ORDER BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')";
+                                        var sqltest = "SELECT ROW_NUMBER() OVER (ORDER BY DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')) as stt,DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H') as Datebill,bill.Idmovie,m.poster,IFNULL(SUM(bill.Totalamount), 0) as totals FROM cinema.Bill  as bill INNER JOIN cinema.movie as m on m.Idmovie = bill.Idmovie WHERE bill.Datebill >= '"+ngayDauThang1.ToString("yyyy-MM-dd HH:mm:ss")+"' AND bill.Datebill <= '"+ngayCuoiThang3.ToString("yyyy-MM-dd HH:mm:ss")+"' GROUP BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H'),bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) ORDER BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')";
                                         var dataget = _context.ReportMovies.FromSqlRaw(sqltest).AsEnumerable().ToList();
 
                                         foreach (var itemS in dataget) 
                                         {
                                            
-                                            var datetimebill = itemS.Datebill.Replace("-","");
+                                            // var datetimebill = itemS.Datebill.Replace("-","");
 
                                            
                                                 var reportitemshow = new ReportMovieshow();
@@ -1186,18 +1201,21 @@ public IActionResult ReportMovie(int report_type)
                                                     reportitemshow.namemovie = datamovie.Namemovie;
                                                     reportitemshow.totals = itemS.totals;
                                                     reportitemshow.Idmovie = itemS.Idmovie;
-                                                    reportitemshow.poster = itemS.poster;
-                                                    reportitemshow.Datebill = itemS.Datebill;
- reportitemshow.stt = itemS.stt;
+                                                    reportitemshow.poster = datamovie.Poster;
+                                                    // reportitemshow.Datebill = itemS.Datebill;
+                                                    reportitemshow.stt = itemS.stt;
                                                     reports.Add(reportitemshow);
                                                 }
                                             
                                         }
-                                    
+                                        var ReportMovieAlls = new ReportMovieAll();
+                                        var dataTotal = _context.Bills.Sum(e=>e.Totalamount);
+                                        ReportMovieAlls.totalall = dataTotal;
+                                        ReportMovieAlls.reportMovieshows.AddRange(reports);
 
                                 successApiResponse.Status = 200;
                                 successApiResponse.Message = "OK";
-                                successApiResponse.Data = reports;
+                                successApiResponse.Data = ReportMovieAlls;
                    } else if (report_type == 5) // lay theo nam
                    {
                         DateTime ngayHienTai = DateTime.Now;
@@ -1209,13 +1227,13 @@ public IActionResult ReportMovie(int report_type)
 
                                    
                                         
-                                        var sqltest = "SELECT ROW_NUMBER() OVER (ORDER BY DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')) as stt,DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H') as Datebill,bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) as totals FROM cinema.Bill  as bill INNER JOIN cinema.movie as m on m.Idmovie = bill.Idmovie WHERE bill.Datebill >= '"+ngayDauNam.ToString("yyyy-MM-dd HH:mm:ss")+"' AND bill.Datebill <= '"+ngayCuoiNam.ToString("yyyy-MM-dd HH:mm:ss")+"' GROUP BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H'),bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) ORDER BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')";
+                                        var sqltest = "SELECT ROW_NUMBER() OVER (ORDER BY DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')) as stt,DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H') as Datebill,bill.Idmovie,m.poster,IFNULL(SUM(bill.Totalamount), 0) as totals FROM cinema.Bill  as bill INNER JOIN cinema.movie as m on m.Idmovie = bill.Idmovie WHERE bill.Datebill >= '"+ngayDauNam.ToString("yyyy-MM-dd HH:mm:ss")+"' AND bill.Datebill <= '"+ngayCuoiNam.ToString("yyyy-MM-dd HH:mm:ss")+"' GROUP BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H'),bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) ORDER BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')";
                                         var dataget = _context.ReportMovies.FromSqlRaw(sqltest).AsEnumerable().ToList();
 
                                         foreach (var itemS in dataget) 
                                         {
                                             
-                                            var datetimebill = itemS.Datebill.Replace("-","");
+                                            // var datetimebill = itemS.Datebill.Replace("-","");
 
                                           
                                                 var reportitemshow = new ReportMovieshow();
@@ -1227,18 +1245,21 @@ public IActionResult ReportMovie(int report_type)
                                                     reportitemshow.namemovie = datamovie.Namemovie;
                                                     reportitemshow.totals = itemS.totals;
                                                     reportitemshow.Idmovie = itemS.Idmovie;
-                                                    reportitemshow.poster = itemS.poster;
-                                                    reportitemshow.Datebill = itemS.Datebill;
- reportitemshow.stt = itemS.stt;
+                                                    reportitemshow.poster = datamovie.Poster;
+                                                    // reportitemshow.Datebill = itemS.Datebill;
+                                                    reportitemshow.stt = itemS.stt;
                                                     reports.Add(reportitemshow);
                                                 }
                                             
                                         }
-                                    
+                                       var ReportMovieAlls = new ReportMovieAll();
+                        var dataTotal = _context.Bills.Sum(e=>e.Totalamount);
+                        ReportMovieAlls.totalall = dataTotal;
+                        ReportMovieAlls.reportMovieshows.AddRange(reports);
 
                                 successApiResponse.Status = 200;
                                 successApiResponse.Message = "OK";
-                                successApiResponse.Data = reports;
+                               successApiResponse.Data = ReportMovieAlls;
                    }else if (report_type == 11) // lay theo nam truoc
                     {
                              DateTime ngayHienTai = DateTime.Now;
@@ -1250,13 +1271,13 @@ public IActionResult ReportMovie(int report_type)
 
                                    
                                         
-                                        var sqltest = "SELECT ROW_NUMBER() OVER (ORDER BY DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')) as stt,DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H') as Datebill,bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) as totals FROM cinema.Bill  as bill INNER JOIN cinema.movie as m on m.Idmovie = bill.Idmovie WHERE bill.Datebill >= '"+ngayDauNamTruoc.ToString("yyyy-MM-dd HH:mm:ss")+"' AND bill.Datebill <= '"+ngayCuoiNamTruoc.ToString("yyyy-MM-dd HH:mm:ss")+"' GROUP BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H'),bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) ORDER BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')";
+                                        var sqltest = "SELECT ROW_NUMBER() OVER (ORDER BY DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')) as stt,DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H') as Datebill,bill.Idmovie,m.poster,IFNULL(SUM(bill.Totalamount), 0) as totals FROM cinema.Bill  as bill INNER JOIN cinema.movie as m on m.Idmovie = bill.Idmovie WHERE bill.Datebill >= '"+ngayDauNamTruoc.ToString("yyyy-MM-dd HH:mm:ss")+"' AND bill.Datebill <= '"+ngayCuoiNamTruoc.ToString("yyyy-MM-dd HH:mm:ss")+"' GROUP BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H'),bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) ORDER BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')";
                                         var dataget = _context.ReportMovies.FromSqlRaw(sqltest).AsEnumerable().ToList();
 
                                         foreach (var itemS in dataget) 
                                         {
                                             
-                                            var datetimebill = itemS.Datebill.Replace("-","");
+                                            // var datetimebill = itemS.Datebill.Replace("-","");
 
                                           
                                                 var reportitemshow = new ReportMovieshow();
@@ -1268,18 +1289,21 @@ public IActionResult ReportMovie(int report_type)
                                                     reportitemshow.namemovie = datamovie.Namemovie;
                                                     reportitemshow.totals = itemS.totals;
                                                     reportitemshow.Idmovie = itemS.Idmovie;
-                                                    reportitemshow.poster = itemS.poster;
-                                                    reportitemshow.Datebill = itemS.Datebill;
+                                                    reportitemshow.poster = datamovie.Poster;
+                                                    // reportitemshow.Datebill = itemS.Datebill;
                                                    reportitemshow.stt = itemS.stt;
                                                     reports.Add(reportitemshow);
                                                 }
                                             
                                         }
-                                    
+                                       var ReportMovieAlls = new ReportMovieAll();
+                        var dataTotal = _context.Bills.Sum(e=>e.Totalamount);
+                        ReportMovieAlls.totalall = dataTotal;
+                        ReportMovieAlls.reportMovieshows.AddRange(reports);
 
                                 successApiResponse.Status = 200;
                                 successApiResponse.Message = "OK";
-                                successApiResponse.Data = reports;
+                               successApiResponse.Data = ReportMovieAlls;
                    }else if (report_type == 6) // lay theo 3 nam gan nhat
                     {
                   DateTime ngayHienTai = DateTime.Now;
@@ -1291,13 +1315,13 @@ public IActionResult ReportMovie(int report_type)
 
                                    
                                         
-                                        var sqltest = "SELECT ROW_NUMBER() OVER (ORDER BY DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')) as stt,DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H') as Datebill,bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) as totals FROM cinema.Bill  as bill INNER JOIN cinema.movie as m on m.Idmovie = bill.Idmovie WHERE bill.Datebill >= '"+ngayDauNam1.ToString("yyyy-MM-dd HH:mm:ss")+"' AND bill.Datebill <= '"+ngayCuoiNam3.ToString("yyyy-MM-dd HH:mm:ss")+"' GROUP BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H'),bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) ORDER BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')";
+                                        var sqltest = "SELECT ROW_NUMBER() OVER (ORDER BY DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')) as stt,DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H') as Datebill,bill.Idmovie,m.poster,IFNULL(SUM(bill.Totalamount), 0) as totals FROM cinema.Bill  as bill INNER JOIN cinema.movie as m on m.Idmovie = bill.Idmovie WHERE bill.Datebill >= '"+ngayDauNam1.ToString("yyyy-MM-dd HH:mm:ss")+"' AND bill.Datebill <= '"+ngayCuoiNam3.ToString("yyyy-MM-dd HH:mm:ss")+"' GROUP BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H'),bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) ORDER BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')";
                                         var dataget = _context.ReportMovies.FromSqlRaw(sqltest).AsEnumerable().ToList();
 
                                         foreach (var itemS in dataget) 
                                         {
                                             
-                                            var datetimebill = itemS.Datebill.Replace("-","");
+                                            // var datetimebill = itemS.Datebill.Replace("-","");
 
                                           
                                                 var reportitemshow = new ReportMovieshow();
@@ -1309,18 +1333,21 @@ public IActionResult ReportMovie(int report_type)
                                                     reportitemshow.namemovie = datamovie.Namemovie;
                                                     reportitemshow.totals = itemS.totals;
                                                     reportitemshow.Idmovie = itemS.Idmovie;
-                                                    reportitemshow.poster = itemS.poster;
-                                                    reportitemshow.Datebill = itemS.Datebill;
+                                                    reportitemshow.poster = datamovie.Poster;
+                                                    // reportitemshow.Datebill = itemS.Datebill;
                                                      reportitemshow.stt = itemS.stt;
                                                     reports.Add(reportitemshow);
                                                 }
                                             
                                         }
-                                    
+                                       var ReportMovieAlls = new ReportMovieAll();
+                        var dataTotal = _context.Bills.Sum(e=>e.Totalamount);
+                        ReportMovieAlls.totalall = dataTotal;
+                        ReportMovieAlls.reportMovieshows.AddRange(reports);
 
                                 successApiResponse.Status = 200;
                                 successApiResponse.Message = "OK";
-                                successApiResponse.Data = reports;
+                                 successApiResponse.Data = ReportMovieAlls;
                    } else if (report_type == 10) // lay theo thang truoc
                    {
                           DateTime ngayHienTai = DateTime.Now;
@@ -1335,13 +1362,13 @@ public IActionResult ReportMovie(int report_type)
 
                                    
                                         
-                                        var sqltest = "SELECT ROW_NUMBER() OVER (ORDER BY DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')) as stt,DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H') as Datebill,bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) as totals FROM cinema.Bill  as bill INNER JOIN cinema.movie as m on m.Idmovie = bill.Idmovie WHERE bill.Datebill >= '"+ngayDauThangTruoc.ToString("yyyy-MM-dd HH:mm:ss")+"' AND bill.Datebill <= '"+ngayCuoiThangTruoc.ToString("yyyy-MM-dd HH:mm:ss")+"' GROUP BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H'),bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) ORDER BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')";
+                                        var sqltest = "SELECT ROW_NUMBER() OVER (ORDER BY DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')) as stt,DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H') as Datebill,bill.Idmovie,m.poster,IFNULL(SUM(bill.Totalamount), 0) as totals FROM cinema.Bill  as bill INNER JOIN cinema.movie as m on m.Idmovie = bill.Idmovie WHERE bill.Datebill >= '"+ngayDauThangTruoc.ToString("yyyy-MM-dd HH:mm:ss")+"' AND bill.Datebill <= '"+ngayCuoiThangTruoc.ToString("yyyy-MM-dd HH:mm:ss")+"' GROUP BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H'),bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) ORDER BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')";
                                         var dataget = _context.ReportMovies.FromSqlRaw(sqltest).AsEnumerable().ToList();
 
                                         foreach (var itemS in dataget) 
                                         {
                                             
-                                            var datetimebill = itemS.Datebill.Replace("-","");
+                                            // var datetimebill = itemS.Datebill.Replace("-","");
 
                                           
                                                 var reportitemshow = new ReportMovieshow();
@@ -1353,36 +1380,35 @@ public IActionResult ReportMovie(int report_type)
                                                     reportitemshow.namemovie = datamovie.Namemovie;
                                                     reportitemshow.totals = itemS.totals;
                                                     reportitemshow.Idmovie = itemS.Idmovie;
-                                                    reportitemshow.poster = itemS.poster;
-                                                    reportitemshow.Datebill = itemS.Datebill;
+                                                    reportitemshow.poster = datamovie.Poster;
+                                                    // reportitemshow.Datebill = itemS.Datebill;
                                                     reportitemshow.stt = itemS.stt;
                                                     reports.Add(reportitemshow);
                                                 }
                                             
                                         }
-                                    
+                                       var ReportMovieAlls = new ReportMovieAll();
+                        var dataTotal = _context.Bills.Sum(e=>e.Totalamount);
+                        ReportMovieAlls.totalall = dataTotal;
+                        ReportMovieAlls.reportMovieshows.AddRange(reports);
 
                                 successApiResponse.Status = 200;
                                 successApiResponse.Message = "OK";
-                                successApiResponse.Data = reports;
+                             successApiResponse.Data = ReportMovieAlls;
                    }else if (report_type == 8) // lay tat ca thoi gian tinh theo nam
                    {
-                         DateTime ngayHienTai = DateTime.Now;
-        
-        DateTime ngayDauNam1 = new DateTime(ngayHienTai.Year - 2, 1, 1);
-        DateTime ngayCuoiNam3 = new DateTime(ngayHienTai.Year, 12, 31);
+                                DateTime ngayHienTai = DateTime.Now;
+                                DateTime ngayDauNam1 = new DateTime(ngayHienTai.Year - 2, 1, 1);
+                                DateTime ngayCuoiNam3 = new DateTime(ngayHienTai.Year, 12, 31);
                                 List<DateTime> timeslots = GetFirstDayOfMonth(DateTime.Now.Year);
                                 List<ReportMovieshow> reports = new List<ReportMovieshow>();
-
-                                   
-                                        
-                                        var sqltest = "SELECT ROW_NUMBER() OVER (ORDER BY DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')) as stt,DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H') as Datebill,bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) as totals FROM cinema.Bill  as bill INNER JOIN cinema.movie as m on m.Idmovie = bill.Idmovie WHERE bill.Datebill >= '"+ngayDauNam1.ToString("yyyy-MM-dd HH:mm:ss")+"' AND bill.Datebill <= '"+ngayCuoiNam3.ToString("yyyy-MM-dd HH:mm:ss")+"' GROUP BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H'),bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) ORDER BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')";
+                                        var sqltest = "SELECT ROW_NUMBER() OVER (ORDER BY bill.Idmovie) as stt,bill.Idmovie,IFNULL(SUM(bill.Totalamount), 0) as totals FROM cinema.Bill  as bill INNER JOIN cinema.movie as m on m.Idmovie = bill.Idmovie WHERE bill.Datebill >= '"+ngayDauNam1.ToString("yyyy-MM-dd HH:mm:ss")+"' AND bill.Datebill <= '"+ngayCuoiNam3.ToString("yyyy-MM-dd HH:mm:ss")+"' GROUP BY  bill.Idmovie";
                                         var dataget = _context.ReportMovies.FromSqlRaw(sqltest).AsEnumerable().ToList();
 
                                         foreach (var itemS in dataget) 
                                         {
                                             
-                                            var datetimebill = itemS.Datebill.Replace("-","");
+                                          
 
                                           
                                                 var reportitemshow = new ReportMovieshow();
@@ -1394,18 +1420,21 @@ public IActionResult ReportMovie(int report_type)
                                                     reportitemshow.namemovie = datamovie.Namemovie;
                                                     reportitemshow.totals = itemS.totals;
                                                     reportitemshow.Idmovie = itemS.Idmovie;
-                                                    reportitemshow.poster = itemS.poster;
-                                                    reportitemshow.Datebill = itemS.Datebill;
+                                                    reportitemshow.poster = datamovie.Poster;
+                                               
                                                     reportitemshow.stt = itemS.stt;
                                                     reports.Add(reportitemshow);
                                                 }
                                             
                                         }
-                                    
+                                    var ReportMovieAlls = new ReportMovieAll();
+                                    var dataTotal = _context.Bills.Sum(e=>e.Totalamount);
+                                    ReportMovieAlls.totalall = dataTotal;
+                                    ReportMovieAlls.reportMovieshows.AddRange(reports);
 
                                 successApiResponse.Status = 200;
                                 successApiResponse.Message = "OK";
-                                successApiResponse.Data = reports;
+                                successApiResponse.Data = ReportMovieAlls;
                    }
                  }
                  catch (IndexOutOfRangeException ex)
@@ -1453,6 +1482,7 @@ public IActionResult ReportFoods(int report_type)
                   
                try
                  {
+               
                     if (report_type == 1) {
                         var date = "2023-10-06";
                         var datenow = DateTime.Now.Date; // Gets the date of yesterday at 00:00:00
@@ -1460,8 +1490,9 @@ public IActionResult ReportFoods(int report_type)
                          List<ReportFood> reports = new List<ReportFood>();
                          var sql = "";
                         var sqltest = "SELECT ROW_NUMBER() OVER (ORDER BY MAX(pay.datetimes) DESC) as stt,cb.Idfood,cb.idcombo, IFNULL(SUM(pay.total_price), 0) as totals, MAX(pay.datetimes) as datetimes FROM  cinema.FoodCombillPayment pay INNER JOIN cinema.FoodComboBill cb ON pay.idFoodlistcombo = cb.Id WHERE  pay.datetimes >= '"+datenow.ToString("yyyy-MM-dd HH:mm:ss")+"'  AND pay.datetimes <= '"+dateend.ToString("yyyy-MM-dd HH:mm:ss")+"' GROUP BY cb.Idfood, cb.idcombo ORDER BY MAX(pay.datetimes) DESC LIMIT 0, 1000";
-
+                       
                         var dataget = _context.ReportFoods.FromSqlRaw(sqltest).AsEnumerable().ToList();
+                      
                         foreach (var item in dataget) {
                              var reportitemshow = new ReportFood();
                              var datafood = _context.Foods.Where(x=>x.Idfood == item.Idfood).FirstOrDefault();
@@ -1473,14 +1504,17 @@ public IActionResult ReportFoods(int report_type)
                               reportitemshow.datetimes = item.datetimes;
                               reports.Add(reportitemshow);
                         }
-                       
+                        
                         //   foreach (var iitem in dataget ){
 
                         //   }
-
-                        successApiResponse.Status = 200;
-                        successApiResponse.Message = "OK";
-                        successApiResponse.Data = reports;
+                                var dataresponse = new ReportFoodAll();
+                            var datafoodtotal = _context.FoodCombillPayment.Sum(e=>e.total_price);
+                            dataresponse.totalall = datafoodtotal;
+                            dataresponse.reportMovieshows.AddRange(reports);
+                            successApiResponse.Status = 200;
+                            successApiResponse.Message = "OK";
+                            successApiResponse.Data = dataresponse;
                     }else if(report_type == 9) {
                       
                         var datenow = DateTime.Now.Date.AddDays(-1); // Gets the date of yesterday at 00:00:00
@@ -1506,9 +1540,13 @@ public IActionResult ReportFoods(int report_type)
 
                         //   }
 
-                        successApiResponse.Status = 200;
-                        successApiResponse.Message = "OK";
-                        successApiResponse.Data = reports;
+                          var dataresponse = new ReportFoodAll();
+                            var datafoodtotal = _context.FoodCombillPayment.Sum(e=>e.total_price);
+                            dataresponse.totalall = datafoodtotal;
+                            dataresponse.reportMovieshows.AddRange(reports);
+                            successApiResponse.Status = 200;
+                            successApiResponse.Message = "OK";
+                            successApiResponse.Data = dataresponse;
                     } else if (report_type == 2) {
                           DateTime ngayHienTai = DateTime.Now;
 
@@ -1535,9 +1573,13 @@ public IActionResult ReportFoods(int report_type)
 
                         //   }
 
-                        successApiResponse.Status = 200;
-                        successApiResponse.Message = "OK";
-                        successApiResponse.Data = reports;
+                            var dataresponse = new ReportFoodAll();
+                            var datafoodtotal = _context.FoodCombillPayment.Sum(e=>e.total_price);
+                            dataresponse.totalall = datafoodtotal;
+                            dataresponse.reportMovieshows.AddRange(reports);
+                            successApiResponse.Status = 200;
+                            successApiResponse.Message = "OK";
+                            successApiResponse.Data = dataresponse;
                     }else if (report_type == 3){
                             DateTime currentDate = DateTime.Now.Date;
                             DateTime firstDayOfMonth = new DateTime(currentDate.Year, currentDate.Month, 1);
@@ -1564,9 +1606,13 @@ public IActionResult ReportFoods(int report_type)
 
                         //   }
 
+                        var dataresponse = new ReportFoodAll();
+                        var datafoodtotal = _context.FoodCombillPayment.Sum(e=>e.total_price);
+                        dataresponse.totalall = datafoodtotal;
+                        dataresponse.reportMovieshows.AddRange(reports);
                         successApiResponse.Status = 200;
                         successApiResponse.Message = "OK";
-                        successApiResponse.Data = reports;
+                        successApiResponse.Data = dataresponse;
                     }else if (report_type == 4) {
                             DateTime ngayHienTai = DateTime.Now;
 
@@ -1594,9 +1640,13 @@ public IActionResult ReportFoods(int report_type)
 
                         //   }
 
-                        successApiResponse.Status = 200;
-                        successApiResponse.Message = "OK";
-                        successApiResponse.Data = reports;
+                                    var dataresponse = new ReportFoodAll();
+                                    var datafoodtotal = _context.FoodCombillPayment.Sum(e=>e.total_price);
+                                    dataresponse.totalall = datafoodtotal;
+                                    dataresponse.reportMovieshows.AddRange(reports);
+                                    successApiResponse.Status = 200;
+                                    successApiResponse.Message = "OK";
+                                    successApiResponse.Data = dataresponse;
                     }else if (report_type == 5){
                          DateTime ngayHienTai = DateTime.Now;
 
@@ -1625,9 +1675,13 @@ public IActionResult ReportFoods(int report_type)
 
                         //   }
 
-                        successApiResponse.Status = 200;
-                        successApiResponse.Message = "OK";
-                        successApiResponse.Data = reports;
+                                var dataresponse = new ReportFoodAll();
+                                var datafoodtotal = _context.FoodCombillPayment.Sum(e=>e.total_price);
+                                dataresponse.totalall = datafoodtotal;
+                                dataresponse.reportMovieshows.AddRange(reports);
+                                successApiResponse.Status = 200;
+                                successApiResponse.Message = "OK";
+                                successApiResponse.Data = dataresponse;
                     }else if (report_type == 11) {
         
                             
@@ -1656,9 +1710,13 @@ public IActionResult ReportFoods(int report_type)
 
                         //   }
 
-                        successApiResponse.Status = 200;
-                        successApiResponse.Message = "OK";
-                        successApiResponse.Data = reports;
+                            var dataresponse = new ReportFoodAll();
+                            var datafoodtotal = _context.FoodCombillPayment.Sum(e=>e.total_price);
+                            dataresponse.totalall = datafoodtotal;
+                            dataresponse.reportMovieshows.AddRange(reports);
+                            successApiResponse.Status = 200;
+                            successApiResponse.Message = "OK";
+                            successApiResponse.Data = dataresponse;
                     }else if (report_type == 6){
                               DateTime ngayHienTai = DateTime.Now;
         
@@ -1685,9 +1743,13 @@ public IActionResult ReportFoods(int report_type)
 
                         //   }
 
-                        successApiResponse.Status = 200;
-                        successApiResponse.Message = "OK";
-                        successApiResponse.Data = reports;
+                            var dataresponse = new ReportFoodAll();
+                            var datafoodtotal = _context.FoodCombillPayment.Sum(e=>e.total_price);
+                            dataresponse.totalall = datafoodtotal;
+                            dataresponse.reportMovieshows.AddRange(reports);
+                            successApiResponse.Status = 200;
+                            successApiResponse.Message = "OK";
+                            successApiResponse.Data = dataresponse;
                     }else if (report_type == 10) {
         DateTime ngayHienTai = DateTime.Now;
 
@@ -1717,9 +1779,13 @@ public IActionResult ReportFoods(int report_type)
 
                         //   }
 
-                        successApiResponse.Status = 200;
-                        successApiResponse.Message = "OK";
-                        successApiResponse.Data = reports;
+                                var dataresponse = new ReportFoodAll();
+                                var datafoodtotal = _context.FoodCombillPayment.Sum(e=>e.total_price);
+                                dataresponse.totalall = datafoodtotal;
+                                dataresponse.reportMovieshows.AddRange(reports);
+                                successApiResponse.Status = 200;
+                                successApiResponse.Message = "OK";
+                                successApiResponse.Data = dataresponse;
                     }else if (report_type == 8){
                          
                           List<ReportFood> reports = new List<ReportFood>();
@@ -1743,9 +1809,13 @@ public IActionResult ReportFoods(int report_type)
 
                         //   }
 
-                        successApiResponse.Status = 200;
-                        successApiResponse.Message = "OK";
-                        successApiResponse.Data = reports;
+                            var dataresponse = new ReportFoodAll();
+                            var datafoodtotal = _context.FoodCombillPayment.Sum(e=>e.total_price);
+                            dataresponse.totalall = datafoodtotal;
+                            dataresponse.reportMovieshows.AddRange(reports);
+                            successApiResponse.Status = 200;
+                            successApiResponse.Message = "OK";
+                            successApiResponse.Data = dataresponse;
                     }
                      
                   
@@ -1764,6 +1834,12 @@ public IActionResult ReportFoods(int report_type)
         }
  return Ok(successApiResponse);
 }
+public partial class ReportFoodAll {
+
+    public int? totalall {get;set;}
+    public List<ReportFood> reportMovieshows {get;set;} = new List<ReportFood>();
+}
+
 
 public partial class ReportFood {
     
@@ -1781,6 +1857,12 @@ public partial class ReportFood {
 
   public string datetimes {get;set;}
 
+}
+
+public partial class ReportMovieAll {
+
+    public int? totalall {get;set;}
+    public List<ReportMovieshow> reportMovieshows {get;set;} = new List<ReportMovieshow>();
 }
 
 public partial class ReportMovieshow {
