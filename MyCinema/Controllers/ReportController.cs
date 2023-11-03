@@ -1362,7 +1362,7 @@ public IActionResult ReportMovie(int report_type)
 
                                    
                                         
-                                        var sqltest = "SELECT ROW_NUMBER() OVER (ORDER BY DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')) as stt,DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H') as Datebill,bill.Idmovie,m.poster,IFNULL(SUM(bill.Totalamount), 0) as totals FROM cinema.Bill  as bill INNER JOIN cinema.movie as m on m.Idmovie = bill.Idmovie WHERE bill.Datebill >= '"+ngayDauThangTruoc.ToString("yyyy-MM-dd HH:mm:ss")+"' AND bill.Datebill <= '"+ngayCuoiThangTruoc.ToString("yyyy-MM-dd HH:mm:ss")+"' GROUP BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H'),bill.Idmovie,m.poster,IFNULL(bill.Totalamount,0) ORDER BY  DATE_FORMAT(bill.Datebill, '%Y-%m-%d %H')";
+                                        var sqltest = "SELECT ROW_NUMBER() OVER (ORDER BY bill.Idmovie) as stt,bill.Idmovie,IFNULL(SUM(bill.Totalamount), 0) as totals FROM cinema.Bill  as bill INNER JOIN cinema.movie as m on m.Idmovie = bill.Idmovie WHERE bill.Datebill >= '"+ngayDauThangTruoc.ToString("yyyy-MM-dd HH:mm:ss")+"' AND bill.Datebill <= '"+ngayCuoiThangTruoc.ToString("yyyy-MM-dd HH:mm:ss")+"' GROUP BY  bill.Idmovie";
                                         var dataget = _context.ReportMovies.FromSqlRaw(sqltest).AsEnumerable().ToList();
 
                                         foreach (var itemS in dataget) 
@@ -1834,6 +1834,78 @@ public IActionResult ReportFoods(int report_type)
         }
  return Ok(successApiResponse);
 }
+
+// API GET LIST VOUCHER
+[HttpGet("getDetailReport")]
+public IActionResult getDetailReport()
+{
+    // khoi tao api response
+    var successApiResponse = new ApiResponse();
+    //header
+       string token = Request.Headers["token"];
+       string filterHeaderValue2 = Request.Headers["ProjectId"];
+       string filterHeaderValue3 = Request.Headers["Method"];
+       string expectedToken = ValidHeader.Token;
+       string method =Convert.ToString(ValidHeader.MethodGet);
+       string Pojectid = Convert.ToString(ValidHeader.Project_id);
+    //check header
+        if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(filterHeaderValue2) || string.IsNullOrEmpty(filterHeaderValue3))
+        {
+        // The "Authorize" header was not found in the request
+           return BadRequest("Authorize header not found in the request.");
+        }else {
+
+            if (token != expectedToken || filterHeaderValue2 != Pojectid || filterHeaderValue3 != method)
+          {
+            return Unauthorized("Invalid token."); // Return an error response if the tokens don't match
+          }else{
+            // if (date != null && Idmovie != null){
+                
+                  
+               try
+                 {
+                    var datadetailreport = new DetailReportAll();
+                var sqltotalfoodcombowithbill = "SELECT IFNULL(SUM(cb.priceCombo), 0) as totals FROM cinema.Bill as bill inner join cinema.FoodComboWithBills fcb on fcb.Idbill = bill.Idbill inner join  cinema.Foodcombo cb on  cb.idcombo = fcb.idcombo";
+               var datafoodcombowithbill = _context.totalfoodcombowithbills.FromSqlRaw(sqltotalfoodcombowithbill).AsEnumerable().SingleOrDefault();
+                 var totalticket = _context.Bills.Sum(e=>e.Totalamount);
+                 var totalfood = _context.FoodCombillPayment.Sum(e=>e.total_price);
+                 var totalall = totalticket + totalfood;
+               
+               datadetailreport.totalall = totalall;
+               datadetailreport.totalfoodcombowith = datafoodcombowithbill.totals;
+               datadetailreport.totalfood = totalfood;
+              datadetailreport.totalticket = totalticket;
+
+                      successApiResponse.Status = 200;
+                     successApiResponse.Message = "OK";
+                     successApiResponse.Data = datadetailreport;
+                 }
+                 catch (IndexOutOfRangeException ex)
+                  {
+    
+                  }     
+            // }else {
+            //     return BadRequest("khong tim thay thong tin");
+            // }
+                 
+
+           }
+
+        }
+ return Ok(successApiResponse);
+}
+
+public class DetailReportAll {
+    public int? totalall {get;set;}
+
+    public int totalfood {get;set;}
+
+    public int? totalticket {get;set;}
+
+    public int totalfoodcombowith {get;set;}
+}
+
+
 public partial class ReportFoodAll {
 
     public int? totalall {get;set;}

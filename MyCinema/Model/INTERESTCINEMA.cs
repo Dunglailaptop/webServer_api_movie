@@ -147,3 +147,7 @@ public partial class ReportFood {
   public int stt {get;set;}
 
 }
+
+public partial class totalfoodcombowithbill {
+  public int totals {get;set;}
+}

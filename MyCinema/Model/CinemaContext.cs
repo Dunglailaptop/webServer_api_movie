@@ -17,7 +17,7 @@ public partial class CinemaContext : DbContext
     //INNNER JOIN START
       public DbSet<ReportFoodCombo> ReportFoodCombos {get;set;}
     public DbSet<ReportTicket> ReportTickets {get;set;}
-
+ public DbSet<totalfoodcombowithbill> totalfoodcombowithbills {get;set;}
       public DbSet<ReportFoodComboALL> ReportFoodComboALLs {get;set;}
     public DbSet<ReportTicketALL> ReportTicketALLs {get;set;}
     public DbSet<ReportMovie> ReportMovies {get;set;}
@@ -525,6 +525,9 @@ public partial class CinemaContext : DbContext
         .HasNoKey();
            OnModelCreatingPartial(modelBuilder);
           modelBuilder.Entity<ReportFood>()
+        .HasNoKey();
+         OnModelCreatingPartial(modelBuilder);
+          modelBuilder.Entity<totalfoodcombowithbill>()
         .HasNoKey();
             modelBuilder.Entity<FoodCombo>()
             .HasKey(fc => fc.idcombo); // Assuming Id is the primary key property
