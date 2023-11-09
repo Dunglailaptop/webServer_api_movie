@@ -51,6 +51,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         // ...
     
 builder.Services.AddSignalR();
+builder.Services.Configure<VnpayConfig>(builder.Configuration.GetSection(VnpayConfig.ConfigName));
+//momo config
+builder.Services.AddHttpContextAccessor();
+
 var app = builder.Build();
 // app.MapHub<MiClaseSignalR>("/signalR");
 // Configure the HTTP request pipeline.

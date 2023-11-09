@@ -264,3 +264,4 @@
 /Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/bin/Debug/net7.0/Microsoft.Extensions.Features.dll
 /Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/bin/Debug/net7.0/Microsoft.Extensions.Logging.Abstractions.dll
 /Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/bin/Debug/net7.0/Microsoft.Extensions.Options.dll
+/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/bin/Debug/net7.0/RestSharp.dll

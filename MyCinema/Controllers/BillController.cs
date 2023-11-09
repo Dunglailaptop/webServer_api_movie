@@ -75,6 +75,7 @@ public IActionResult PaymentBill([FromBody] Bills bills)
                        _context.Bills.Add(billspay);
                        _context.SaveChanges();
                        bl.Idbill = billspay.Idbill;
+                       bl.Totalamount = billspay.Totalamount;
                        if (billspay.Idbill != 0) {
                             foreach (var item in bills.ticket) {
                                 Ticket TC = new Ticket {

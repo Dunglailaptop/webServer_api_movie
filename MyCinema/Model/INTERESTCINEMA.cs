@@ -1,5 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using webapiserver.Controllers;
 
 namespace MyCinema.Model;
 
@@ -151,3 +156,63 @@ public partial class ReportFood {
 public partial class totalfoodcombowithbill {
   public int totals {get;set;}
 }
+
+
+
+public partial class PaymentMomoRequest {
+    public string PartnerCode {get;set;}
+
+    public string requestId {get;set;}
+
+    public long amount {get;set;}
+
+    public string orderId {get;set;}
+    public string orderInfo {get;set;}
+    public string redirectUrl {get;set;}
+
+    public string ipnUrl {get;set;}
+public string requestType {get;set;}
+public string extraData {get;set;}
+public string lang {get;set;}
+public string signature {get;set;}
+  
+  public void MakeSignature(string accessKey,string sceretkey)
+{
+      var rawHash = "accessKey=" + accessKey +
+          "&amount=" + this.amount +
+          "&extraData=" + this.extraData +
+          "&ipnUrl=" + this.ipnUrl +
+          "&orderId=" + this.orderId +
+          "&orderInfo=" + this.orderInfo +
+          "&partnerCode=" + this.PartnerCode +
+          "&redirectUrl=" + this.redirectUrl + 
+          "&requestId=" + this.requestId +
+          "&requestType=" + this.requestType;
+          this.signature = MomoHelper.HmacSHA256(rawHash,sceretkey);
+}
+public (bool, string?) getLink(string payment) {
+        using HttpClient client =  new HttpClient();
+        var requestData = JsonConvert.SerializeObject(this, new JsonSerializerSettings() {
+            ContractResolver = new CamelCasePropertyNamesContractResolver(),
+            Formatting = Formatting.Indented,
+                    });
+                    var requestContent = new StringContent(requestData, Encoding.UTF8, "application/json");
+                    var createPaymentLinkRes = client.PostAsync(payment, requestContent).Result;
+                 if (createPaymentLinkRes.IsSuccessStatusCode) {
+                          var responseContent = createPaymentLinkRes.Content.ReadAsStringAsync().Result;
+                          var responseData = JsonConvert.DeserializeObject<MomoHelper.MomoResponse>(responseContent);
+                          if (responseData.resultCode == "0") {
+                              return (true, responseData.pauUrl);
+                          }else {
+                            return (false, responseData.message);
+                          }
+                 }else {
+
+                  return (false, createPaymentLinkRes.ReasonPhrase);
+                 }
+   }
+  
+
+
+}
+

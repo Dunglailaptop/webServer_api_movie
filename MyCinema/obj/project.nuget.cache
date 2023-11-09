@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8u+M4QiX9cEgEivXJifU2X2pEFuwlxT/1nAafLZ6+nLBzPCU7Zdj9wGEY4G3inQlNv1IIEDpQ/ispVL10piL9w==",
+  "dgSpecHash": "2uLDVjSCF+WYFZ8w67cIKXBWJi1z05kvW1AdKcikYoitxVpx+DFo8/XnAVuvUEAzs23Xr+Gvy9HY9YVT93JQOA==",
   "success": true,
   "projectFilePath": "/Users/nguyenxuantiendung/Documents/webServer_api_movie/MyCinema/MyCinema.csproj",
   "expectedPackageFiles": [
@@ -62,6 +62,7 @@
     "/Users/nguyenxuantiendung/.nuget/packages/newtonsoft.json.bson/1.0.2/newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "/Users/nguyenxuantiendung/.nuget/packages/pomelo.entityframeworkcore.mysql/7.0.0/pomelo.entityframeworkcore.mysql.7.0.0.nupkg.sha512",
     "/Users/nguyenxuantiendung/.nuget/packages/portable.bouncycastle/1.9.0/portable.bouncycastle.1.9.0.nupkg.sha512",
+    "/Users/nguyenxuantiendung/.nuget/packages/restsharp/110.2.0/restsharp.110.2.0.nupkg.sha512",
     "/Users/nguyenxuantiendung/.nuget/packages/runtime.native.system.data.sqlclient.sni/4.7.0/runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
     "/Users/nguyenxuantiendung/.nuget/packages/runtime.win-arm64.runtime.native.system.data.sqlclient.sni/4.4.0/runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "/Users/nguyenxuantiendung/.nuget/packages/runtime.win-x64.runtime.native.system.data.sqlclient.sni/4.4.0/runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
@@ -93,7 +94,7 @@
     "/Users/nguyenxuantiendung/.nuget/packages/system.text.encoding/4.3.0/system.text.encoding.4.3.0.nupkg.sha512",
     "/Users/nguyenxuantiendung/.nuget/packages/system.text.encoding.codepages/4.4.0/system.text.encoding.codepages.4.4.0.nupkg.sha512",
     "/Users/nguyenxuantiendung/.nuget/packages/system.text.encodings.web/7.0.0/system.text.encodings.web.7.0.0.nupkg.sha512",
-    "/Users/nguyenxuantiendung/.nuget/packages/system.text.json/7.0.1/system.text.json.7.0.1.nupkg.sha512",
+    "/Users/nguyenxuantiendung/.nuget/packages/system.text.json/7.0.2/system.text.json.7.0.2.nupkg.sha512",
     "/Users/nguyenxuantiendung/.nuget/packages/system.threading.channels/7.0.0/system.threading.channels.7.0.0.nupkg.sha512",
     "/Users/nguyenxuantiendung/.nuget/packages/system.threading.tasks/4.3.0/system.threading.tasks.4.3.0.nupkg.sha512",
     "/Users/nguyenxuantiendung/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
