@@ -15,6 +15,7 @@ public partial class CinemaContext : DbContext
     {
     }
     //INNNER JOIN START
+    public DbSet<paymentVNPAY> paymentVNPAY {get;set;}
       public DbSet<ReportFoodCombo> ReportFoodCombos {get;set;}
     public DbSet<ReportTicket> ReportTickets {get;set;}
  public DbSet<totalfoodcombowithbill> totalfoodcombowithbills {get;set;}
@@ -539,7 +540,7 @@ public partial class CinemaContext : DbContext
             .HasKey(fc => fc.id); 
                modelBuilder.Entity<ListFoodCombo>()
             .HasKey(fc => fc.id);
-
+            modelBuilder.Entity<paymentVNPAY>().HasKey(fc => fc.idpaymentvnpay);
         //INNER JOIN END
     }
     //   protected override void OnModelCreating(ModelBuilder modelBuilder)

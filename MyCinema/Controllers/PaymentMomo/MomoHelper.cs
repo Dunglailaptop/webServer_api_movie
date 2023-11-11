@@ -13,6 +13,8 @@ using System.Security.Cryptography;
 namespace webapiserver.Controllers
 {
   public class MomoHelper {
+
+       public static IHttpContextAccessor httpContextAccessor;
             public static string HmacSHA256(string input, string key) {
                     byte[] keybyte = Encoding.UTF8.GetBytes(key);
                     byte[] messageBytes = Encoding.UTF8.GetBytes(input);
@@ -43,6 +45,26 @@ namespace webapiserver.Controllers
                  public string qrCodeUrl {get;set;}
 
     }
+
+    public static string? IpAddress => httpContextAccessor?.HttpContext?.Connection?.LocalIpAddress?.ToString();
+
+public static string? GetIpAddress()
+{
+          string ipAddress;
+          try
+            {
+        ipAddress = httpContextAccessor.HttpContext.Request.Headers["X-Forwarded-For"];
+
+        if (string.IsNullOrEmpty(ipAddress) || (ipAddress.ToLower() == "unknown") || ipAddress.Length > 45)
+        ipAddress = httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
+             }
+           catch (Exception ex)
+          {
+        ipAddress = "Invalid IP:" + ex.Message;
+          }
+
+        return ipAddress;
+ }
    
   }
 
